@@ -42,7 +42,23 @@ class VacuumFilter {
             return b_2;
         }
         int RangeSelection(int n, float alpha, int r){
-            return 0;
+            int L=1;
+            while (LoadFactorTest(n, alpha, r, L) != true)
+                L*=2;
+            return L;
+        }
+        bool LoadFactorTest(int n, float alpha, int r, int L){
+            int m = ceil(n/(4*alpha*L)*L);//broj bucket-a
+            int N = 4*r*m*alpha; //broj unesenih elemenata
+            int c=m/L; //broj chunk-ova
+            float P = 0.97 * 4 * L;
+            float D = EstimatedMaxLoad(N, c);
+            if (D<P)
+                return true;
+            return false;
+        }
+        float EstimatedMaxLoad(int N, int c){
+            return n/c + 3/2*sqrt((2*n/c)*log(c));
         }
         bool lookup(){
             return false;
