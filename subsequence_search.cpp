@@ -35,11 +35,44 @@ void save_fasta(const string& filename, const string& name, const string& sequen
     }
 }
 
+string read_fasta(const string& filename) {
+    string sequence;
+
+    ifstream file(filename);
+    string line;
+
+    while (getline(file, line)) {
+        if (!line.empty() && line[0] != '>') {
+            sequence += line;
+        }
+    }
+
+    return sequence;
+}
+
+vector<string> extract_kmers(const string& sequence, int k) {
+    vector<string> kmers;
+
+    for (int i = 0; i <= (int)sequence.size() - k; i++) {
+        kmers.push_back(sequence.substr(i, k));
+    }
+
+    return kmers;
+}
+
 int main() {
     string artificial_filename = "sekvenca.fasta";
 
     string artificial_sequence = generate_sequence(1000000);
     save_fasta(artificial_filename, "Umjetno generiran genom", artificial_sequence);
+
+    string ecoli_filename = "sequence.fasta";
+    string ecoli_sequence = read_fasta(ecoli_filename);
+
+    vector<int> k_vrijednosti = {10, 20, 50, 100, 200};
+
+    int k = k_vrijednosti[0];
+    vector<string> kmers = extract_kmers(ecoli_sequence, k);
 
     return 0;
 }
