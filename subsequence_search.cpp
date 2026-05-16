@@ -115,8 +115,17 @@ int main() {
 
     int k = k_vrijednosti[0];
     
-    vector<string> kmers = extract_kmers(ecoli_sequence, k);
-    auto [pozitivni, negativni] = generate_queries(kmers, k, N_QUERIES);
+    vector<pair<string, string>> datasets = {
+        {"ecoli",      ecoli_sequence},
+        {"artificial", artificial_sequence},
+    };
+
+    for (auto& [dataset_name, sekvenca] : datasets) {
+        for (int k : k_vrijednosti) {
+            vector<string> kmers = extract_kmers(sekvenca, k);
+            auto [pozitivni, negativni] = generate_queries(kmers, k, N_QUERIES);
+        }
+    }
 
     return 0;
 }
