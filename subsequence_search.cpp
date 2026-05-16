@@ -60,6 +60,19 @@ vector<string> extract_kmers(const string& sequence, int k) {
     return kmers;
 }
 
+string generate_random_kmer(int k) {
+    string base = "AGCT";
+    string kmer;
+
+    uniform_int_distribution<int> dist(0, 3);
+
+    for (int i = 0; i < k; i++) {
+        kmer += base[dist(rng)];
+    }
+
+    return kmer;
+}
+
 int main() {
     string artificial_filename = "sekvenca.fasta";
 
@@ -73,6 +86,8 @@ int main() {
 
     int k = k_vrijednosti[0];
     vector<string> kmers = extract_kmers(ecoli_sequence, k);
+
+    string random_kmer = generate_random_kmer(k);
 
     return 0;
 }
