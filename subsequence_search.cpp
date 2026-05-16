@@ -79,12 +79,12 @@ pair<vector<string>, vector<string>> generate_queries(
 ) {
     set<string> kmer_set(kmers.begin(), kmers.end());
 
-    vector<string> shuffled = kmers;
-    shuffle(shuffled.begin(), shuffled.end(), rng);
+    vector<string> unique_kmers(kmer_set.begin(), kmer_set.end());
+    shuffle(unique_kmers.begin(), unique_kmers.end(), rng);
 
     vector<string> pozitivni(
-        shuffled.begin(),
-        shuffled.begin() + min(n_queries, (int)shuffled.size())
+        unique_kmers.begin(),
+        unique_kmers.begin() + min(n_queries, (int)unique_kmers.size())
     );
 
     vector<string> negativni;
