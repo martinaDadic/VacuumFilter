@@ -5,7 +5,6 @@
 #include <set>
 #include <algorithm>
 #include <random>
-#include <filesystem>
 
 using namespace std;
 
@@ -112,8 +111,6 @@ int main() {
 
     vector<int> k_vrijednosti = {10, 20, 50, 100, 200};
     int N_QUERIES = 10000;
-
-    int k = k_vrijednosti[0];
     
     vector<pair<string, string>> datasets = {
         {"ecoli",      ecoli_sequence},
