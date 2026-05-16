@@ -73,6 +73,34 @@ string generate_random_kmer(int k) {
     return kmer;
 }
 
+pair<vector<string>, vector<string>> generate_queries(
+    const vector<string>& kmers,
+    int k,
+    int n_queries = 10000
+) {
+    set<string> kmer_set(kmers.begin(), kmers.end());
+
+    vector<string> shuffled = kmers;
+    shuffle(shuffled.begin(), shuffled.end(), rng);
+
+    vector<string> pozitivni(
+        shuffled.begin(),
+        shuffled.begin() + min(n_queries, (int)shuffled.size())
+    );
+
+    vector<string> negativni;
+
+    while ((int)negativni.size() < n_queries) {
+        string candidate = generate_random_kmer(k);
+
+        if (kmer_set.find(candidate) == kmer_set.end()) {
+            negativni.push_back(candidate);
+        }
+    }
+
+    return {pozitivni, negativni};
+}
+
 int main() {
     string artificial_filename = "sekvenca.fasta";
 
@@ -83,11 +111,12 @@ int main() {
     string ecoli_sequence = read_fasta(ecoli_filename);
 
     vector<int> k_vrijednosti = {10, 20, 50, 100, 200};
+    int N_QUERIES = 10000;
 
     int k = k_vrijednosti[0];
+    
     vector<string> kmers = extract_kmers(ecoli_sequence, k);
-
-    string random_kmer = generate_random_kmer(k);
+    auto [pozitivni, negativni] = generate_queries(kmers, k, N_QUERIES);
 
     return 0;
 }
