@@ -85,10 +85,11 @@ class VacuumFilter {
             for(int i=0;i<MAXEVICTS;i++){
                 for(int j=0;j<4;j++){
                     uint16_t f1=buckets[bIduci][j];
-                    uint16_t empty=emptySlot(Alt(bIduci, f));//vraca mjesto slobodnog slota, ako ga ima, ako ne, vraca 0
-                    if(empty>0){
+                    uint16_t empty=emptySlot(Alt(bIduci, f1));//vraca mjesto slobodnog slota, ako ga ima, ako ne, vraca 0
+                    if(empty!=-1){
                         buckets[bIduci][j]=f;
-                        buckets[f1][empty]=f1;
+                        buckets[Alt(bIduci, f1)][empty]=f1;
+                        n++;
                         return true;
                     }
                 }
@@ -101,11 +102,11 @@ class VacuumFilter {
             return false;
         }
         uint16_t emptySlot(uint16_t b){
-            for(int i=1;i<5;i++){
+            for(int i=0;i<4;i++){
                 if (buckets[b][i]==0)
                     return i;
             }
-            return 0;
+            return -1;
         }
         bool lookup(int x){
             uint16_t hashX = a5hash(&x, sizeof(x), 0); //hash itema
