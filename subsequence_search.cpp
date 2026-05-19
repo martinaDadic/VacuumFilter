@@ -5,6 +5,7 @@
 #include <set>
 #include <algorithm>
 #include <random>
+#include <cctype>
 
 using namespace std;
 
@@ -14,6 +15,20 @@ const int DEFAULT_QUERY_COUNT = 10000;
 const int FASTA_LINE_LENGTH = 60;
 
 mt19937 rng(RANDOM_SEED);
+
+bool is_valid_dna_base(char base) {
+    return base == 'A' || base == 'C' || base == 'G' || base == 'T';
+}
+
+bool is_valid_kmer(const string& kmer) {
+    for (char base : kmer) {
+        if (!is_valid_dna_base(base)) {
+            return false;
+        }
+    }
+
+    return true;
+}
 
 string generate_sequence(int length) {
     string dna_bases = "AGCT";
@@ -43,11 +58,23 @@ string read_fasta(const string& filename) {
     string sequence;
 
     ifstream file(filename);
+
+    if (!file.is_open()) {
+        cerr << "Error: Could not open FASTA file: " << filename << "\n";
+        return sequence;
+    }
+
     string line;
 
     while (getline(file, line)) {
-        if (!line.empty() && line[0] != '>') {
-            sequence += line;
+        if (line.empty() || line[0] == '>') {
+            continue;
+        }
+
+        for (char character : line) {
+            if (!isspace(character)) {
+                sequence += toupper(character);
+            }
         }
     }
 
@@ -57,8 +84,18 @@ string read_fasta(const string& filename) {
 vector<string> extract_kmers(const string& sequence, int k) {
     vector<string> kmers;
 
+    if ((int)sequence.size() < k) {
+        return kmers;
+    }
+
+    kmers.reserve(sequence.size() - k + 1);
+
     for (int i = 0; i <= (int)sequence.size() - k; i++) {
-        kmers.push_back(sequence.substr(i, k));
+        string kmer = sequence.substr(i, k);
+
+        if (is_valid_kmer(kmer)) {
+            kmers.push_back(kmer);
+        }
     }
 
     return kmers;
@@ -110,10 +147,14 @@ int main() {
     string artificial_fasta_filename = "artificial_genome.fasta";
 
     string artificial_sequence = generate_sequence(ARTIFICIAL_SEQUENCE_LENGTH);
-    save_fasta(artificial_fasta_filename, "Artificially generated genom", artificial_sequence);
+    save_fasta(artificial_fasta_filename, "Artificially generated genome", artificial_sequence);
 
     string ecoli_fasta_filename = "sequence.fasta";
     string ecoli_sequence = read_fasta(ecoli_fasta_filename);
+
+    if (ecoli_sequence.empty()) {
+    return 1;
+    }
 
     vector<int> k_values = {10, 20, 50, 100, 200};
     int query_count = DEFAULT_QUERY_COUNT;
