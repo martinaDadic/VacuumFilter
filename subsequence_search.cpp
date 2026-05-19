@@ -8,29 +8,34 @@
 
 using namespace std;
 
-mt19937 rng(42);
+const int RANDOM_SEED = 42;
+const int ARTIFICIAL_SEQUENCE_LENGTH = 1000000;
+const int DEFAULT_QUERY_COUNT = 10000;
+const int FASTA_LINE_LENGTH = 60;
 
-string generate_sequence(int size) {
-    string base = "AGCT";
+mt19937 rng(RANDOM_SEED);
+
+string generate_sequence(int length) {
+    string dna_bases = "AGCT";
     string sequence;
-    sequence.reserve(size);
+    sequence.reserve(length);
 
     uniform_int_distribution<int> dist(0, 3);
 
-    for (int i = 0; i < size; i++) {
-        sequence += base[dist(rng)];
+    for (int i = 0; i < length; i++) {
+        sequence += dna_bases[dist(rng)];
     }
 
     return sequence;
 }
 
-void save_fasta(const string& filename, const string& name, const string& sequence) {
+void save_fasta(const string& filename, const string& sequence_name, const string& sequence) {
     ofstream file(filename);
 
-    file << ">" << name << "\n";
+    file << ">" << sequence_name << "\n";
 
-    for (int i = 0; i < (int)sequence.size(); i += 60) {
-        file << sequence.substr(i, 60) << "\n";
+    for (int i = 0; i < (int)sequence.size(); i += FASTA_LINE_LENGTH) {
+        file << sequence.substr(i, FASTA_LINE_LENGTH) << "\n";
     }
 }
 
@@ -60,13 +65,14 @@ vector<string> extract_kmers(const string& sequence, int k) {
 }
 
 string generate_random_kmer(int k) {
-    string base = "AGCT";
+    string dna_bases = "AGCT";
     string kmer;
+    kmer.reserve(k);
 
     uniform_int_distribution<int> dist(0, 3);
 
     for (int i = 0; i < k; i++) {
-        kmer += base[dist(rng)];
+        kmer += dna_bases[dist(rng)];
     }
 
     return kmer;
@@ -75,52 +81,52 @@ string generate_random_kmer(int k) {
 pair<vector<string>, vector<string>> generate_queries(
     const vector<string>& kmers,
     int k,
-    int n_queries = 10000
+    int query_count = DEFAULT_QUERY_COUNT
 ) {
     set<string> kmer_set(kmers.begin(), kmers.end());
 
     vector<string> unique_kmers(kmer_set.begin(), kmer_set.end());
     shuffle(unique_kmers.begin(), unique_kmers.end(), rng);
 
-    vector<string> pozitivni(
+    vector<string> positive_queries(
         unique_kmers.begin(),
-        unique_kmers.begin() + min(n_queries, (int)unique_kmers.size())
+        unique_kmers.begin() + min(query_count, (int)unique_kmers.size())
     );
 
-    vector<string> negativni;
+    vector<string> negative_queries;
 
-    while ((int)negativni.size() < n_queries) {
+    while ((int)negative_queries.size() < query_count) {
         string candidate = generate_random_kmer(k);
 
         if (kmer_set.find(candidate) == kmer_set.end()) {
-            negativni.push_back(candidate);
+            negative_queries.push_back(candidate);
         }
     }
 
-    return {pozitivni, negativni};
+    return {positive_queries, negative_queries};
 }
 
 int main() {
-    string artificial_filename = "sekvenca.fasta";
+    string artificial_fasta_filename = "artificial_genome.fasta";
 
-    string artificial_sequence = generate_sequence(1000000);
-    save_fasta(artificial_filename, "Umjetno generiran genom", artificial_sequence);
+    string artificial_sequence = generate_sequence(ARTIFICIAL_SEQUENCE_LENGTH);
+    save_fasta(artificial_fasta_filename, "Artificially generated genom", artificial_sequence);
 
-    string ecoli_filename = "sequence.fasta";
-    string ecoli_sequence = read_fasta(ecoli_filename);
+    string ecoli_fasta_filename = "sequence.fasta";
+    string ecoli_sequence = read_fasta(ecoli_fasta_filename);
 
-    vector<int> k_vrijednosti = {10, 20, 50, 100, 200};
-    int N_QUERIES = 10000;
+    vector<int> k_values = {10, 20, 50, 100, 200};
+    int query_count = DEFAULT_QUERY_COUNT;
     
     vector<pair<string, string>> datasets = {
         {"ecoli",      ecoli_sequence},
         {"artificial", artificial_sequence},
     };
 
-    for (auto& [dataset_name, sekvenca] : datasets) {
-        for (int k : k_vrijednosti) {
-            vector<string> kmers = extract_kmers(sekvenca, k);
-            auto [pozitivni, negativni] = generate_queries(kmers, k, N_QUERIES);
+    for (auto& [dataset_name, sequence] : datasets) {
+        for (int k : k_values) {
+            vector<string> kmers = extract_kmers(sequence, k);
+            auto [positive_queries, negative_queries] = generate_queries(kmers, k, query_count);
         }
     }
 
