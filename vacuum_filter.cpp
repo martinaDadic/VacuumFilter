@@ -39,24 +39,24 @@ class VacuumFilter {
             b_2=(noOfBuckets - 1 - b_2 + delta) % noOfBuckets;
             return b_2;
         }
-        int RangeSelection(int n, float alpha, int r){
+        int RangeSelection(int n, float alpha, float r){
             int L=1;
             while (LoadFactorTest(n, alpha, r, L) != true)
                 L*=2;
             return L;
         }
-        bool LoadFactorTest(int n, float alpha, int r, int L){
+        bool LoadFactorTest(int n, float alpha, float r, int L){
             int m = ceil((double)n / (4.0 * alpha * L) * L); //broj bucket-a
-            int N = 4*r*m*alpha; //broj unesenih elemenata
+            int N = 4.0*r*m*alpha; //broj unesenih elemenata
             int c=m/L; //broj chunk-ova
-            float P = 0.97 * 4 * L;
+            float P = 0.97 * 4.0 * L; //najniza vrijednost kapaciteta svakog chunk-a
             float D = EstimatedMaxLoad(N, c);
             if (D<P)
                 return true;
             return false;
         }
-        float EstimatedMaxLoad(int N, int c){
-            return N/c + 1.5*sqrt((2*N/c)*log(c));
+        float EstimatedMaxLoad(double N, int c){
+            return (N / c) + 1.5 * sqrt((2.0 * N / c) * log((double)c));
         }
         bool insert(int x){
             uint16_t hashX = a5hash(&x, sizeof(x), 0); //hash itema
@@ -116,6 +116,6 @@ class VacuumFilter {
 int main(){
     VacuumFilter filter(5000);
     cout << filter.noOfBuckets;
-    cout << "Load Factor Test za n=1000, alpha=0.95, r=10 i L=20: " << filter.LoadFactorTest(1000, 0.95, 10, 20) <<"\n";
-    cout << "Range selection za n=1000, alpha=0.95, r=10: " << filter.RangeSelection(1000, 0.95, 10) <<"\n";
+    cout << "Load Factor Test za n=1000, alpha=0.95, r=0.75 i L=20: " << filter.LoadFactorTest(1000, 0.95, 0.75, 20) <<"\n";
+    cout << "Range selection za n=1000, alpha=0.95, r=0.75: " << filter.RangeSelection(1000, 0.95, 0.75) <<"\n";
 }
