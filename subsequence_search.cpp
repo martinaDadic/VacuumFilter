@@ -6,11 +6,13 @@
 #include <algorithm>
 #include <random>
 #include <cctype>
+#include <sstream>
 
 using namespace std;
 
 const int RANDOM_SEED = 42;
-const int ARTIFICIAL_SEQUENCE_LENGTH = 1000000;
+const vector<int> DEFAULT_ARTIFICIAL_LENGTHS = {1000, 10000, 100000, 1000000};
+const vector<int> DEFAULT_K_VALUES = {10, 20, 50, 100, 200};
 const int DEFAULT_QUERY_COUNT = 10000;
 const int FASTA_LINE_LENGTH = 60;
 
@@ -115,6 +117,24 @@ string generate_random_kmer(int k) {
     return kmer;
 }
 
+vector<int> parse_int_list(const string& text) {
+    vector<int> values;
+    stringstream ss(text);
+    string item;
+
+    while (getline(ss, item, ',')) {
+        if (!item.empty()) {
+            values.push_back(stoi(item));
+        }
+    }
+
+    return values;
+}
+
+string make_artificial_fasta_filename(int length) {
+    return "artificial_len" + to_string(length) + ".fasta";
+}
+
 pair<vector<string>, vector<string>> generate_queries(
     const vector<string>& kmers,
     int k,
@@ -143,31 +163,56 @@ pair<vector<string>, vector<string>> generate_queries(
     return {positive_queries, negative_queries};
 }
 
-int main() {
-    string artificial_fasta_filename = "artificial_genome.fasta";
-
-    string artificial_sequence = generate_sequence(ARTIFICIAL_SEQUENCE_LENGTH);
-    save_fasta(artificial_fasta_filename, "Artificially generated genome", artificial_sequence);
-
+int main(int argc, char* argv[]) {
     string ecoli_fasta_filename = "sequence.fasta";
+    int query_count = DEFAULT_QUERY_COUNT;
+    vector<int> artificial_lengths = DEFAULT_ARTIFICIAL_LENGTHS;
+    vector<int> k_values = DEFAULT_K_VALUES;
+
+    if (argc >= 2) {
+        ecoli_fasta_filename = argv[1];
+    }
+
+    if (argc >= 3) {
+        query_count = stoi(argv[2]);
+    }
+
+    if (argc >= 4) {
+        artificial_lengths = parse_int_list(argv[3]);
+    }
+
+    if (argc >= 5) {
+        k_values = parse_int_list(argv[4]);
+    }
+
     string ecoli_sequence = read_fasta(ecoli_fasta_filename);
 
     if (ecoli_sequence.empty()) {
-    return 1;
+        return 1;
+    }
+    
+    vector<pair<string, string>> datasets;
+    datasets.push_back({"ecoli", ecoli_sequence});
+
+    for (int length : artificial_lengths) {
+        string artificial_sequence = generate_sequence(length);
+        string artificial_fasta_filename = make_artificial_fasta_filename(length);
+
+        save_fasta(artificial_fasta_filename, "Artificially generated genome", artificial_sequence);
+
+        datasets.push_back({"artificial_len" + to_string(length), artificial_sequence});
     }
 
-    vector<int> k_values = {10, 20, 50, 100, 200};
-    int query_count = DEFAULT_QUERY_COUNT;
-    
-    vector<pair<string, string>> datasets = {
-        {"ecoli",      ecoli_sequence},
-        {"artificial", artificial_sequence},
-    };
+    for (const auto& dataset : datasets) {
+        string dataset_name = dataset.first;
+        string sequence = dataset.second;
 
-    for (auto& [dataset_name, sequence] : datasets) {
         for (int k : k_values) {
             vector<string> kmers = extract_kmers(sequence, k);
-            auto [positive_queries, negative_queries] = generate_queries(kmers, k, query_count);
+
+            pair<vector<string>, vector<string>> queries = generate_queries(kmers, k, query_count);
+            vector<string> positive_queries = queries.first;
+            vector<string> negative_queries = queries.second;
         }
     }
 
