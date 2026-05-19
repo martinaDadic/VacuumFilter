@@ -11,6 +11,7 @@ class VacuumFilter {
         uint16_t buckets[1000][4] = {}; //tablica koja sadrži m buckets od kojih svaka ima 4 polja u kojima se spremaju fingerprints
         int L[4] = {}; //polje koje sadrzi duljine AR-ova
         int n; //ukupan broj itema
+        const int MAXEVICTS = 500;
 
         VacuumFilter(int m){ //konstruktor
             noOfBuckets = m;
@@ -23,7 +24,7 @@ class VacuumFilter {
             return AltVeci(b, f);
         }
         uint16_t AltVeci(uint16_t b, uint16_t f){
-            if (L[0]==0){
+            if (L[0]==0){ //ako nismo vec izracunal AR-ove
                 for (int i=1;i<5;i++){
                     L[i-1]=RangeSelection(n, 0.95, (1.0 - i / 4.0));
                 }
@@ -75,8 +76,36 @@ class VacuumFilter {
                     return true;
                 }
             }
-            int randomNumber = rand() % 8; //random broj od 0 do 7
+            uint16_t bIduci;
+            int randomNumber = rand() % 2; //random biramo izmedu b1 i b2
+            if (randomNumber == 0)
+                bIduci=b1;
+            else
+                bIduci=b2;
+            for(int i=0;i<MAXEVICTS;i++){
+                for(int j=0;j<4;j++){
+                    uint16_t f1=buckets[bIduci][j];
+                    uint16_t empty=emptySlot(Alt(bIduci, f));//vraca mjesto slobodnog slota, ako ga ima, ako ne, vraca 0
+                    if(empty>0){
+                        buckets[bIduci][j]=f;
+                        buckets[f1][empty]=f1;
+                        return true;
+                    }
+                }
+                int randomNumber = rand() % 4; //random biramo slot iz bIduci
+                uint16_t temp = buckets[bIduci][randomNumber];
+                buckets[bIduci][randomNumber]=f;
+                f=temp;
+                bIduci=Alt(bIduci, f);
+            }
             return false;
+        }
+        uint16_t emptySlot(uint16_t b){
+            for(int i=1;i<5;i++){
+                if (buckets[b][i]==0)
+                    return i;
+            }
+            return 0;
         }
         bool lookup(int x){
             uint16_t hashX = a5hash(&x, sizeof(x), 0); //hash itema
@@ -115,7 +144,6 @@ class VacuumFilter {
 
 int main(){
     VacuumFilter filter(5000);
-    cout << filter.noOfBuckets;
     cout << "Load Factor Test za n=1000, alpha=0.95, r=0.75 i L=20: " << filter.LoadFactorTest(1000, 0.95, 0.75, 20) <<"\n";
     cout << "Range selection za n=1000, alpha=0.95, r=0.75: " << filter.RangeSelection(1000, 0.95, 0.75) <<"\n";
 }
