@@ -16,6 +16,7 @@ const vector<int> DEFAULT_K_VALUES = {10, 20, 50, 100, 200};
 const int DEFAULT_QUERY_COUNT = 10000;
 const int MAX_NEGATIVE_ATTEMPTS_PER_QUERY = 100;
 const int FASTA_LINE_LENGTH = 60;
+const string SUMMARY_FILENAME = "data_summary.csv";
 
 mt19937 rng(RANDOM_SEED);
 
@@ -147,6 +148,14 @@ string make_artificial_fasta_filename(int length) {
     return "artificial_len" + to_string(length) + ".fasta";
 }
 
+string make_insert_filename(const string& dataset_name, int k) {
+    return dataset_name + "_k" + to_string(k) + "_insert.txt";
+}
+
+string make_queries_filename(const string& dataset_name, int k) {
+    return dataset_name + "_k" + to_string(k) + "_queries.csv";
+}
+
 pair<vector<string>, vector<string>> generate_queries(
     const vector<string>& unique_kmers,
     int k,
@@ -190,6 +199,42 @@ pair<vector<string>, vector<string>> generate_queries(
     return {positive_queries, negative_queries};
 }
 
+void write_insert_file(const string& filename, const vector<string>& unique_kmers) {
+    ofstream file(filename);
+
+    if (!file.is_open()) {
+        cerr << "Error: Could not write insert file: " << filename << "\n";
+        return;
+    }
+
+    for (const string& kmer : unique_kmers) {
+        file << kmer << "\n";
+    }
+}
+
+void write_queries_file(
+    const string& filename,
+    const vector<string>& positive_queries,
+    const vector<string>& negative_queries
+) {
+    ofstream file(filename);
+
+    if (!file.is_open()) {
+        cerr << "Error: Could not write queries file: " << filename << "\n";
+        return;
+    }
+
+    file << "kmer;expected\n";
+
+    for (const string& kmer : positive_queries) {
+        file << kmer << ";" << 1 << "\n";
+    }
+
+    for (const string& kmer : negative_queries) {
+        file << kmer << ";" << 0 << "\n";
+    }
+}
+
 int main(int argc, char* argv[]) {
     string ecoli_fasta_filename = "sequence.fasta";
     int query_count = DEFAULT_QUERY_COUNT;
@@ -230,6 +275,16 @@ int main(int argc, char* argv[]) {
         datasets.push_back({"artificial_len" + to_string(length), artificial_sequence});
     }
 
+    ofstream summary_file(SUMMARY_FILENAME);
+
+    if (!summary_file.is_open()) {
+        cerr << "Error: Could not write summary file: " << SUMMARY_FILENAME << "\n";
+        return 1;
+    }
+
+    summary_file << "dataset;sequence_length;k;total_kmers;unique_kmers;"
+                << "positive_queries;negative_queries;insert_file;queries_file;seed\n";
+
     for (const auto& dataset : datasets) {
         string dataset_name = dataset.first;
         string sequence = dataset.second;
@@ -241,6 +296,23 @@ int main(int argc, char* argv[]) {
             pair<vector<string>, vector<string>> queries = generate_queries(unique_kmers, k, query_count);
             vector<string> positive_queries = queries.first;
             vector<string> negative_queries = queries.second;
+
+            string insert_filename = make_insert_filename(dataset_name, k);
+            string queries_filename = make_queries_filename(dataset_name, k);
+
+            write_insert_file(insert_filename, unique_kmers);
+            write_queries_file(queries_filename, positive_queries, negative_queries);
+
+            summary_file << dataset_name << ";"
+                        << sequence.size() << ";"
+                        << k << ";"
+                        << kmers.size() << ";"
+                        << unique_kmers.size() << ";"
+                        << positive_queries.size() << ";"
+                        << negative_queries.size() << ";"
+                        << insert_filename << ";"
+                        << queries_filename << ";"
+                        << RANDOM_SEED << "\n";
         }
     }
 
