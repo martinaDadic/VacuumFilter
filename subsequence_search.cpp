@@ -7,6 +7,7 @@
 #include <random>
 #include <cctype>
 #include <sstream>
+#include <filesystem>
 
 using namespace std;
 
@@ -16,7 +17,8 @@ const vector<int> DEFAULT_K_VALUES = {10, 20, 50, 100, 200};
 const int DEFAULT_QUERY_COUNT = 10000;
 const int MAX_NEGATIVE_ATTEMPTS_PER_QUERY = 100;
 const int FASTA_LINE_LENGTH = 60;
-const string SUMMARY_FILENAME = "data_summary.csv";
+const string OUTPUT_DIRECTORY = "data";
+const string SUMMARY_FILENAME = OUTPUT_DIRECTORY + "/data_summary.csv";
 
 mt19937 rng(RANDOM_SEED);
 
@@ -144,16 +146,24 @@ vector<int> parse_int_list(const string& text) {
     return values;
 }
 
+bool create_output_directory() {
+    if (filesystem::exists(OUTPUT_DIRECTORY)) {
+        return true;
+    }
+
+    return filesystem::create_directory(OUTPUT_DIRECTORY);
+}
+
 string make_artificial_fasta_filename(int length) {
-    return "artificial_len" + to_string(length) + ".fasta";
+    return OUTPUT_DIRECTORY + "/artificial_len" + to_string(length) + ".fasta";
 }
 
 string make_insert_filename(const string& dataset_name, int k) {
-    return dataset_name + "_k" + to_string(k) + "_insert.txt";
+    return OUTPUT_DIRECTORY + "/" + dataset_name + "_k" + to_string(k) + "_insert.txt";
 }
 
 string make_queries_filename(const string& dataset_name, int k) {
-    return dataset_name + "_k" + to_string(k) + "_queries.csv";
+    return OUTPUT_DIRECTORY + "/" + dataset_name + "_k" + to_string(k) + "_queries.csv";
 }
 
 pair<vector<string>, vector<string>> generate_queries(
@@ -255,6 +265,11 @@ int main(int argc, char* argv[]) {
 
     if (argc >= 5) {
         k_values = parse_int_list(argv[4]);
+    }
+
+    if (!create_output_directory()) {
+    cerr << "Error: Could not create output directory: " << OUTPUT_DIRECTORY << "\n";
+    return 1;
     }
 
     string ecoli_sequence = read_fasta(ecoli_fasta_filename);
