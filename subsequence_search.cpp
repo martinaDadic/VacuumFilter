@@ -14,6 +14,7 @@ const int RANDOM_SEED = 42;
 const vector<int> DEFAULT_ARTIFICIAL_LENGTHS = {1000, 10000, 100000, 1000000};
 const vector<int> DEFAULT_K_VALUES = {10, 20, 50, 100, 200};
 const int DEFAULT_QUERY_COUNT = 10000;
+const int MAX_NEGATIVE_ATTEMPTS_PER_QUERY = 100;
 const int FASTA_LINE_LENGTH = 60;
 
 mt19937 rng(RANDOM_SEED);
@@ -103,6 +104,17 @@ vector<string> extract_kmers(const string& sequence, int k) {
     return kmers;
 }
 
+vector<string> get_unique_kmers(const vector<string>& kmers) {
+    set<string> unique_kmer_set(kmers.begin(), kmers.end());
+
+    vector<string> unique_kmers(
+        unique_kmer_set.begin(),
+        unique_kmer_set.end()
+    );
+
+    return unique_kmers;
+}
+
 string generate_random_kmer(int k) {
     string dna_bases = "AGCT";
     string kmer;
@@ -136,28 +148,43 @@ string make_artificial_fasta_filename(int length) {
 }
 
 pair<vector<string>, vector<string>> generate_queries(
-    const vector<string>& kmers,
+    const vector<string>& unique_kmers,
     int k,
     int query_count = DEFAULT_QUERY_COUNT
 ) {
-    set<string> kmer_set(kmers.begin(), kmers.end());
+    set<string> kmer_set(unique_kmers.begin(), unique_kmers.end());
 
-    vector<string> unique_kmers(kmer_set.begin(), kmer_set.end());
-    shuffle(unique_kmers.begin(), unique_kmers.end(), rng);
+    vector<string> shuffled_kmers = unique_kmers;
+    shuffle(shuffled_kmers.begin(), shuffled_kmers.end(), rng);
 
     vector<string> positive_queries(
-        unique_kmers.begin(),
-        unique_kmers.begin() + min(query_count, (int)unique_kmers.size())
+        shuffled_kmers.begin(),
+        shuffled_kmers.begin() + min(query_count, (int)shuffled_kmers.size())
     );
 
     vector<string> negative_queries;
+    set<string> negative_query_set;
 
-    while ((int)negative_queries.size() < query_count) {
+    int attempts = 0;
+    int max_attempts = query_count * MAX_NEGATIVE_ATTEMPTS_PER_QUERY;
+
+    while ((int)negative_queries.size() < query_count && attempts < max_attempts) {
+        attempts++;
+
         string candidate = generate_random_kmer(k);
 
-        if (kmer_set.find(candidate) == kmer_set.end()) {
+        if (
+            kmer_set.find(candidate) == kmer_set.end() &&
+            negative_query_set.find(candidate) == negative_query_set.end()
+        ) {
+            negative_query_set.insert(candidate);
             negative_queries.push_back(candidate);
         }
+    }
+
+    if ((int)negative_queries.size() < query_count) {
+        cerr << "Warning: Generated only " << negative_queries.size()
+             << " negative queries for k = " << k << "\n";
     }
 
     return {positive_queries, negative_queries};
@@ -209,8 +236,9 @@ int main(int argc, char* argv[]) {
 
         for (int k : k_values) {
             vector<string> kmers = extract_kmers(sequence, k);
+            vector<string> unique_kmers = get_unique_kmers(kmers);
 
-            pair<vector<string>, vector<string>> queries = generate_queries(kmers, k, query_count);
+            pair<vector<string>, vector<string>> queries = generate_queries(unique_kmers, k, query_count);
             vector<string> positive_queries = queries.first;
             vector<string> negative_queries = queries.second;
         }
