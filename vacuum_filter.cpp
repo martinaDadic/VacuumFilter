@@ -3,18 +3,21 @@
 #include <cstdint>
 #include <iostream>
 #include <cmath>
+#include <vector>
+#include <array>
 using namespace std;
 
 class VacuumFilter {
     public:
-        int noOfBuckets; //m
-        uint16_t buckets[1000][4] = {}; //tablica koja sadrži m buckets od kojih svaka ima 4 polja u kojima se spremaju fingerprints
-        int L[4] = {}; //polje koje sadrzi duljine AR-ova
-        int n; //ukupan broj itema
+        size_t noOfBuckets; //m
+        vector<array<uint16_t,4>> buckets; //tablica koja sadrži m buckets od kojih svaka ima 4 polja u kojima se spremaju fingerprints
+        size_t L[4] = {}; //polje koje sadrzi duljine AR-ova
+        size_t n = 0; //ukupan broj itema
         const int MAXEVICTS = 500;
 
-        VacuumFilter(int m){ //konstruktor
+        VacuumFilter(size_t m){ //konstruktor
             noOfBuckets = m;
+            buckets.resize(noOfBuckets);
             n=0;
         }
         uint16_t Alt(uint16_t b, uint16_t f){
@@ -59,7 +62,7 @@ class VacuumFilter {
         float EstimatedMaxLoad(double N, int c){
             return (N / c) + 1.5 * sqrt((2.0 * N / c) * log((double)c));
         }
-        bool insert(int x){
+        bool insert(string x){
             uint16_t hashX = a5hash(&x, sizeof(x), 0); //hash itema
             uint16_t f=hashX & 0xFFFF; //fingerprint item-a
             uint16_t b1 = hashX % noOfBuckets; //1. kandidat
@@ -85,7 +88,7 @@ class VacuumFilter {
             for(int i=0;i<MAXEVICTS;i++){
                 for(int j=0;j<4;j++){
                     uint16_t f1=buckets[bIduci][j];
-                    uint16_t empty=emptySlot(Alt(bIduci, f1));//vraca mjesto slobodnog slota, ako ga ima, ako ne, vraca 0
+                    int empty=emptySlot(Alt(bIduci, f1));//vraca mjesto slobodnog slota, ako ga ima, ako ne, vraca 0
                     if(empty!=-1){
                         buckets[bIduci][j]=f;
                         buckets[Alt(bIduci, f1)][empty]=f1;
@@ -101,14 +104,14 @@ class VacuumFilter {
             }
             return false;
         }
-        uint16_t emptySlot(uint16_t b){
+        int emptySlot(uint16_t b){
             for(int i=0;i<4;i++){
                 if (buckets[b][i]==0)
                     return i;
             }
             return -1;
         }
-        bool lookup(int x){
+        bool lookup(string x){
             uint16_t hashX = a5hash(&x, sizeof(x), 0); //hash itema
             uint16_t f=hashX & 0xFFFF; //fingerprint item-a
             uint16_t b1 = hashX % noOfBuckets; //1. kandidat
@@ -123,7 +126,7 @@ class VacuumFilter {
             }
             return false;
         }
-        bool remove(int x){
+        bool remove(string x){
             uint16_t hashX = a5hash(&x, sizeof(x), 0); //hash itema
             uint16_t f=hashX & 0xFFFF; //fingerprint item-a
             uint16_t b1 = hashX % noOfBuckets; //1. kandidat
