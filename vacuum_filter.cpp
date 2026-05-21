@@ -20,13 +20,13 @@ class VacuumFilter {
             buckets.resize(noOfBuckets);
             n=0;
         }
-        uint16_t Alt(uint16_t b, uint16_t f){
+        uint32_t Alt(uint32_t b, uint16_t f){
             if (n < 262144){ //2^18
                 return AltManji(b, f);
             }
             return AltVeci(b, f);
         }
-        uint16_t AltVeci(uint16_t b, uint16_t f){
+        uint32_t AltVeci(uint32_t b, uint16_t f){
             if (L[0]==0){ //ako nismo vec izracunal AR-ove
                 for (int i=1;i<5;i++){
                     L[i-1]=RangeSelection(n, 0.95, (1.0 - i / 4.0));
@@ -37,7 +37,7 @@ class VacuumFilter {
             uint16_t delta = a5hash(&f, sizeof(f), 0) % l;
             return b ^ delta;
         }
-        uint16_t AltManji(uint16_t b, uint16_t f){
+        uint32_t AltManji(uint32_t b, uint16_t f){
             uint16_t delta = a5hash(&f, sizeof(f), 0) % noOfBuckets;
             uint16_t b_2=(b-delta) % noOfBuckets;
             b_2=(noOfBuckets - 1 - b_2 + delta) % noOfBuckets;
@@ -63,23 +63,23 @@ class VacuumFilter {
             return (N / c) + 1.5 * sqrt((2.0 * N / c) * log((double)c));
         }
         bool insert(string x){
-            uint16_t hashX = a5hash(&x, sizeof(x), 0); //hash itema
+            uint32_t hashX = a5hash(x.data(), x.size(), 0); //hash itema
             uint16_t f=hashX & 0xFFFF; //fingerprint item-a
-            uint16_t b1 = hashX % noOfBuckets; //1. kandidat
-            uint16_t b2 = Alt(b1, f); //2. kandidat
+            uint32_t b1 = hashX % noOfBuckets; //1. kandidat
+            uint32_t b2 = Alt(b1, f); //2. kandidat
             for(int i=0;i<4;i++){
                 if (buckets[b1][i]==0){
                     buckets[b1][i]=f;
                     n++;
                     return true;
                 }
-                if (buckets[b2][i]==0){
+                else if (buckets[b2][i]==0){
                     buckets[b2][i]=f;
                     n++;
                     return true;
                 }
             }
-            uint16_t bIduci;
+            uint32_t bIduci;
             int randomNumber = rand() % 2; //random biramo izmedu b1 i b2
             if (randomNumber == 0)
                 bIduci=b1;
@@ -104,7 +104,7 @@ class VacuumFilter {
             }
             return false;
         }
-        int emptySlot(uint16_t b){
+        int emptySlot(uint32_t b){
             for(int i=0;i<4;i++){
                 if (buckets[b][i]==0)
                     return i;
@@ -112,10 +112,10 @@ class VacuumFilter {
             return -1;
         }
         bool lookup(string x){
-            uint16_t hashX = a5hash(&x, sizeof(x), 0); //hash itema
+            uint32_t hashX = a5hash(x.data(), x.size(), 0); //hash itema
             uint16_t f=hashX & 0xFFFF; //fingerprint item-a
-            uint16_t b1 = hashX % noOfBuckets; //1. kandidat
-            uint16_t b2 = Alt(b1, f); //2. kandidat
+            uint32_t b1 = hashX % noOfBuckets; //1. kandidat
+            uint32_t b2 = Alt(b1, f); //2. kandidat
             for(int i=0;i<4;i++){
                 if (buckets[b1][i]==f){
                     return true;
@@ -127,10 +127,10 @@ class VacuumFilter {
             return false;
         }
         bool remove(string x){
-            uint16_t hashX = a5hash(&x, sizeof(x), 0); //hash itema
+            uint32_t hashX = a5hash(x.data(), x.size(), 0); //hash itema
             uint16_t f=hashX & 0xFFFF; //fingerprint item-a
-            uint16_t b1 = hashX % noOfBuckets; //1. kandidat
-            uint16_t b2 = Alt(b1, f); //2. kandidat
+            uint32_t b1 = hashX % noOfBuckets; //1. kandidat
+            uint32_t b2 = Alt(b1, f); //2. kandidat
             for(int i=0;i<4;i++){
                 if (buckets[b1][i]==f){
                     buckets[b1][i]=0;
@@ -147,7 +147,36 @@ class VacuumFilter {
 };
 
 int main(){
+    //ovdje testiram radi li moj vacuum filter ispravno
     VacuumFilter filter(5000);
     cout << "Load Factor Test za n=1000, alpha=0.95, r=0.75 i L=20: " << filter.LoadFactorTest(1000, 0.95, 0.75, 20) <<"\n";
     cout << "Range selection za n=1000, alpha=0.95, r=0.75: " << filter.RangeSelection(1000, 0.95, 0.75) <<"\n";
+    int brojNeuspjelihInserta=0;
+    int brojFalseNegativa=0;
+    int brojNeuspjelihRemovea=0;
+    for (int i=0;i<5000;i++){
+        if(!filter.insert(to_string(i))){
+            brojNeuspjelihInserta++;
+        }
+    }
+    cout << "broj neuspjeha inserta: " << brojNeuspjelihInserta << "\n";
+    for (int i=0;i<5000;i++){
+        if(!filter.lookup(to_string(i))){
+            brojFalseNegativa++;
+        }
+    }
+    cout << "broj false negativa: " << brojFalseNegativa << "\n";
+    for (int i=0;i<5000;i++){
+        if(!filter.remove(to_string(i))){
+            brojNeuspjelihRemovea++;
+        }
+    }
+    cout << "broj neuspjeha removea: " << brojNeuspjelihRemovea << "\n";
+    brojFalseNegativa=0;
+    for (int i=0;i<5000;i++){
+        if(!filter.lookup(to_string(i))){
+            brojFalseNegativa++;
+        }
+    }
+    cout << "broj false negativa: " << brojFalseNegativa << "\n"; //ovdje ocekujemo broj 5000, jer su svi elementi izbrisani.
 }
