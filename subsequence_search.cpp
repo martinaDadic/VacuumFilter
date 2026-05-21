@@ -12,10 +12,10 @@
 using namespace std;
 
 const int RANDOM_SEED = 42;
-const vector<int> DEFAULT_ARTIFICIAL_LENGTHS = {1000, 10000, 100000, 1000000};
+const vector<int> DEFAULT_ARTIFICIAL_LENGTHS = {1000, 2000, 5000, 10000, 50000, 100000, 500000, 1000000, 5000000, 10000000};
 const vector<int> DEFAULT_K_VALUES = {10, 20, 50, 100, 200};
 const int DEFAULT_QUERY_COUNT = 10000;
-const int MAX_NEGATIVE_ATTEMPTS_PER_QUERY = 100;
+const int MAX_NEGATIVE_ATTEMPTS_PER_QUERY = 1000;
 const int FASTA_LINE_LENGTH = 60;
 const string OUTPUT_DIRECTORY = "data";
 const string SUMMARY_FILENAME = OUTPUT_DIRECTORY + "/data_summary.csv";
@@ -108,12 +108,15 @@ vector<string> extract_kmers(const string& sequence, int k) {
 }
 
 vector<string> get_unique_kmers(const vector<string>& kmers) {
-    set<string> unique_kmer_set(kmers.begin(), kmers.end());
+    set<string> seen_kmers;
+    vector<string> unique_kmers;
 
-    vector<string> unique_kmers(
-        unique_kmer_set.begin(),
-        unique_kmer_set.end()
-    );
+    for (const string& kmer : kmers) {
+        if (seen_kmers.find(kmer) == seen_kmers.end()) {
+            seen_kmers.insert(kmer);
+            unique_kmers.push_back(kmer);
+        }
+    }
 
     return unique_kmers;
 }
