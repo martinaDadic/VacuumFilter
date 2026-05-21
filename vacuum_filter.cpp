@@ -154,6 +154,7 @@ int main(){
     int brojNeuspjelihInserta=0;
     int brojFalseNegativa=0;
     int brojNeuspjelihRemovea=0;
+    int brojFalsePositivea=0;
     for (int i=0;i<5000;i++){
         if(!filter.insert(to_string(i))){
             brojNeuspjelihInserta++;
@@ -172,11 +173,17 @@ int main(){
         }
     }
     cout << "broj neuspjeha removea: " << brojNeuspjelihRemovea << "\n";
+    for (int i=5000;i<6000;i++){
+        if(filter.lookup(to_string(i))){
+            brojFalsePositivea++;
+        }
+    }
+    cout << "broj false pozitiva: " << brojFalsePositivea << "\n";
     brojFalseNegativa=0;
     for (int i=0;i<5000;i++){
         if(!filter.lookup(to_string(i))){
             brojFalseNegativa++;
         }
     }
-    cout << "broj false negativa: " << brojFalseNegativa << "\n"; //ovdje ocekujemo broj 5000, jer su svi elementi izbrisani.
+    cout << "broj false negativa nakon brisanja svih elemenata: " << brojFalseNegativa << "\n"; //ovdje ocekujemo broj 5000, jer su svi elementi izbrisani.
 }
