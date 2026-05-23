@@ -12,25 +12,25 @@ VacuumFilter::VacuumFilter(size_t m){ //konstruktor
     n=0;
 }
 uint32_t VacuumFilter::Alt(uint32_t b, uint16_t f){
-    if (n < 262144){ //2^18
+    /* if (noOfBuckets < 262144){ //2^18
         return AltManji(b, f);
-    }
+    } */
     return AltVeci(b, f);
 }
 uint32_t VacuumFilter::AltVeci(uint32_t b, uint16_t f){
     if (L[0]==0){ //ako nismo vec izracunal AR-ove
-        for (int i=1;i<5;i++){
-            L[i-1]=RangeSelection(n, 0.95, (1.0 - i / 4.0));
+        for (int i=0;i<4;i++){
+            L[i]=RangeSelection(noOfBuckets, 0.95, (1.0 - i / 4.0));
         }
         L[3]*=2; //povecamo zadnji da izbjegnemo fail
     }
     int l = L[f % 4]; //trenutni AR
-    uint16_t delta = a5hash(&f, sizeof(f), 0) % l;
-    return b ^ delta;
+    uint32_t delta = a5hash(&f, sizeof(f), 0) % l;
+    return (b ^ delta) % noOfBuckets;
 }
 uint32_t VacuumFilter::AltManji(uint32_t b, uint16_t f){
-    uint16_t delta = a5hash(&f, sizeof(f), 0) % noOfBuckets;
-    uint16_t b_2=(b-delta) % noOfBuckets;
+    uint32_t delta = a5hash(&f, sizeof(f), 0) % noOfBuckets;
+    uint32_t b_2=(b-delta) % noOfBuckets;
     b_2=(noOfBuckets - 1 - b_2 + delta) % noOfBuckets;
     return b_2;
 }
@@ -55,7 +55,7 @@ float VacuumFilter::EstimatedMaxLoad(double N, int c){
 }
 bool VacuumFilter::insert(string x){
     uint32_t hashX = a5hash(x.data(), x.size(), 0); //hash itema
-    uint16_t f=hashX & 0xFFFF; //fingerprint item-a
+    uint16_t f=(hashX & 0xFFFF) + 1; //fingerprint item-a
     uint32_t b1 = hashX % noOfBuckets; //1. kandidat
     uint32_t b2 = Alt(b1, f); //2. kandidat
     for(int i=0;i<4;i++){
@@ -104,7 +104,7 @@ int VacuumFilter::emptySlot(uint32_t b){
 }
 bool VacuumFilter::lookup(string x){
     uint32_t hashX = a5hash(x.data(), x.size(), 0); //hash itema
-    uint16_t f=hashX & 0xFFFF; //fingerprint item-a
+    uint16_t f=(hashX & 0xFFFF) + 1; //fingerprint item-a
     uint32_t b1 = hashX % noOfBuckets; //1. kandidat
     uint32_t b2 = Alt(b1, f); //2. kandidat
     for(int i=0;i<4;i++){
@@ -119,7 +119,7 @@ bool VacuumFilter::lookup(string x){
 }
 bool VacuumFilter::remove(string x){
     uint32_t hashX = a5hash(x.data(), x.size(), 0); //hash itema
-    uint16_t f=hashX & 0xFFFF; //fingerprint item-a
+    uint16_t f=(hashX & 0xFFFF) + 1; //fingerprint item-a
     uint32_t b1 = hashX % noOfBuckets; //1. kandidat
     uint32_t b2 = Alt(b1, f); //2. kandidat
     for(int i=0;i<4;i++){
