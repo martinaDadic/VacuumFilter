@@ -1,0 +1,385 @@
+ecoli
+sequence length: 4641652
+k: 10
+total k-mers: 4641643
+unique k-mers: 898115
+positive queries: 10000
+negative queries: 10000
+ecoli
+sequence length: 4641652
+k: 20
+total k-mers: 4641633
+unique k-mers: 4561265
+positive queries: 10000
+negative queries: 10000
+ecoli
+sequence length: 4641652
+k: 50
+total k-mers: 4641603
+unique k-mers: 4578840
+positive queries: 10000
+negative queries: 10000
+ecoli
+sequence length: 4641652
+k: 100
+total k-mers: 4641553
+unique k-mers: 4588610
+positive queries: 10000
+negative queries: 10000
+ecoli
+sequence length: 4641652
+k: 200
+total k-mers: 4641453
+unique k-mers: 4598333
+positive queries: 10000
+negative queries: 10000
+artificial_len1000
+sequence length: 1000
+k: 10
+total k-mers: 991
+unique k-mers: 991
+positive queries: 991
+negative queries: 10000
+artificial_len1000
+sequence length: 1000
+k: 20
+total k-mers: 981
+unique k-mers: 981
+positive queries: 981
+negative queries: 10000
+artificial_len1000
+sequence length: 1000
+k: 50
+total k-mers: 951
+unique k-mers: 951
+positive queries: 951
+negative queries: 10000
+artificial_len1000
+sequence length: 1000
+k: 100
+total k-mers: 901
+unique k-mers: 901
+positive queries: 901
+negative queries: 10000
+artificial_len1000
+sequence length: 1000
+k: 200
+total k-mers: 801
+unique k-mers: 801
+positive queries: 801
+negative queries: 10000
+artificial_len2000
+sequence length: 2000
+k: 10
+total k-mers: 1991
+unique k-mers: 1989
+positive queries: 1989
+negative queries: 10000
+artificial_len2000
+sequence length: 2000
+k: 20
+total k-mers: 1981
+unique k-mers: 1981
+positive queries: 1981
+negative queries: 10000
+artificial_len2000
+sequence length: 2000
+k: 50
+total k-mers: 1951
+unique k-mers: 1951
+positive queries: 1951
+negative queries: 10000
+artificial_len2000
+sequence length: 2000
+k: 100
+total k-mers: 1901
+unique k-mers: 1901
+positive queries: 1901
+negative queries: 10000
+artificial_len2000
+sequence length: 2000
+k: 200
+total k-mers: 1801
+unique k-mers: 1801
+positive queries: 1801
+negative queries: 10000
+artificial_len5000
+sequence length: 5000
+k: 10
+total k-mers: 4991
+unique k-mers: 4984
+positive queries: 4984
+negative queries: 10000
+artificial_len5000
+sequence length: 5000
+k: 20
+total k-mers: 4981
+unique k-mers: 4981
+positive queries: 4981
+negative queries: 10000
+artificial_len5000
+sequence length: 5000
+k: 50
+total k-mers: 4951
+unique k-mers: 4951
+positive queries: 4951
+negative queries: 10000
+artificial_len5000
+sequence length: 5000
+k: 100
+total k-mers: 4901
+unique k-mers: 4901
+positive queries: 4901
+negative queries: 10000
+artificial_len5000
+sequence length: 5000
+k: 200
+total k-mers: 4801
+unique k-mers: 4801
+positive queries: 4801
+negative queries: 10000
+artificial_len10000
+sequence length: 10000
+k: 10
+total k-mers: 9991
+unique k-mers: 9940
+positive queries: 9940
+negative queries: 10000
+artificial_len10000
+sequence length: 10000
+k: 20
+total k-mers: 9981
+unique k-mers: 9981
+positive queries: 9981
+negative queries: 10000
+artificial_len10000
+sequence length: 10000
+k: 50
+total k-mers: 9951
+unique k-mers: 9951
+positive queries: 9951
+negative queries: 10000
+artificial_len10000
+sequence length: 10000
+k: 100
+total k-mers: 9901
+unique k-mers: 9901
+positive queries: 9901
+negative queries: 10000
+artificial_len10000
+sequence length: 10000
+k: 200
+total k-mers: 9801
+unique k-mers: 9801
+positive queries: 9801
+negative queries: 10000
+artificial_len50000
+sequence length: 50000
+k: 10
+total k-mers: 49991
+unique k-mers: 48835
+positive queries: 10000
+negative queries: 10000
+artificial_len50000
+sequence length: 50000
+k: 20
+total k-mers: 49981
+unique k-mers: 49981
+positive queries: 10000
+negative queries: 10000
+artificial_len50000
+sequence length: 50000
+k: 50
+total k-mers: 49951
+unique k-mers: 49951
+positive queries: 10000
+negative queries: 10000
+artificial_len50000
+sequence length: 50000
+k: 100
+total k-mers: 49901
+unique k-mers: 49901
+positive queries: 10000
+negative queries: 10000
+artificial_len50000
+sequence length: 50000
+k: 200
+total k-mers: 49801
+unique k-mers: 49801
+positive queries: 10000
+negative queries: 10000
+artificial_len100000
+sequence length: 100000
+k: 10
+total k-mers: 99991
+unique k-mers: 95322
+positive queries: 10000
+negative queries: 10000
+artificial_len100000
+sequence length: 100000
+k: 20
+total k-mers: 99981
+unique k-mers: 99981
+positive queries: 10000
+negative queries: 10000
+artificial_len100000
+sequence length: 100000
+k: 50
+total k-mers: 99951
+unique k-mers: 99951
+positive queries: 10000
+negative queries: 10000
+artificial_len100000
+sequence length: 100000
+k: 100
+total k-mers: 99901
+unique k-mers: 99901
+positive queries: 10000
+negative queries: 10000
+artificial_len100000
+sequence length: 100000
+k: 200
+total k-mers: 99801
+unique k-mers: 99801
+positive queries: 10000
+negative queries: 10000
+artificial_len500000
+sequence length: 500000
+k: 10
+total k-mers: 499991
+unique k-mers: 397754
+positive queries: 10000
+negative queries: 10000
+artificial_len500000
+sequence length: 500000
+k: 20
+total k-mers: 499981
+unique k-mers: 499981
+positive queries: 10000
+negative queries: 10000
+artificial_len500000
+sequence length: 500000
+k: 50
+total k-mers: 499951
+unique k-mers: 499951
+positive queries: 10000
+negative queries: 10000
+artificial_len500000
+sequence length: 500000
+k: 100
+total k-mers: 499901
+unique k-mers: 499901
+positive queries: 10000
+negative queries: 10000
+artificial_len500000
+sequence length: 500000
+k: 200
+total k-mers: 499801
+unique k-mers: 499801
+positive queries: 10000
+negative queries: 10000
+artificial_len1000000
+sequence length: 1000000
+k: 10
+total k-mers: 999991
+unique k-mers: 644941
+positive queries: 10000
+negative queries: 10000
+artificial_len1000000
+sequence length: 1000000
+k: 20
+total k-mers: 999981
+unique k-mers: 999981
+positive queries: 10000
+negative queries: 10000
+artificial_len1000000
+sequence length: 1000000
+k: 50
+total k-mers: 999951
+unique k-mers: 999951
+positive queries: 10000
+negative queries: 10000
+artificial_len1000000
+sequence length: 1000000
+k: 100
+total k-mers: 999901
+unique k-mers: 999901
+positive queries: 10000
+negative queries: 10000
+artificial_len1000000
+sequence length: 1000000
+k: 200
+total k-mers: 999801
+unique k-mers: 999801
+positive queries: 10000
+negative queries: 10000
+artificial_len5000000
+sequence length: 5000000
+k: 10
+total k-mers: 4999991
+unique k-mers: 1039671
+positive queries: 10000
+negative queries: 8905
+artificial_len5000000
+sequence length: 5000000
+k: 20
+total k-mers: 4999981
+unique k-mers: 4999967
+positive queries: 10000
+negative queries: 10000
+artificial_len5000000
+sequence length: 5000000
+k: 50
+total k-mers: 4999951
+unique k-mers: 4999951
+positive queries: 10000
+negative queries: 10000
+artificial_len5000000
+sequence length: 5000000
+k: 100
+total k-mers: 4999901
+unique k-mers: 4999901
+positive queries: 10000
+negative queries: 10000
+artificial_len5000000
+sequence length: 5000000
+k: 200
+total k-mers: 4999801
+unique k-mers: 4999801
+positive queries: 10000
+negative queries: 10000
+artificial_len10000000
+sequence length: 10000000
+k: 10
+total k-mers: 9999991
+unique k-mers: 1048488
+positive queries: 10000
+negative queries: 88
+artificial_len10000000
+sequence length: 10000000
+k: 20
+total k-mers: 9999981
+unique k-mers: 9999928
+positive queries: 10000
+negative queries: 10000
+artificial_len10000000
+sequence length: 10000000
+k: 50
+total k-mers: 9999951
+unique k-mers: 9999951
+positive queries: 10000
+negative queries: 10000
+artificial_len10000000
+sequence length: 10000000
+k: 100
+total k-mers: 9999901
+unique k-mers: 9999901
+positive queries: 10000
+negative queries: 10000
+artificial_len10000000
+sequence length: 10000000
+k: 200
+total k-mers: 9999801
+unique k-mers: 9999801
+positive queries: 10000
+negative queries: 10000

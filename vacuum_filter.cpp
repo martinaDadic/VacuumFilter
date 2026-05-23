@@ -55,7 +55,9 @@ float VacuumFilter::EstimatedMaxLoad(double N, int c){
 }
 bool VacuumFilter::insert(string x){
     uint32_t hashX = a5hash(x.data(), x.size(), 0); //hash itema
-    uint16_t f=(hashX & 0xFFFF) + 1; //fingerprint item-a
+    uint16_t f=(hashX & 0xFFFF); //fingerprint item-a
+    if (f == 0) 
+        f = 1; //0 oznacava prazni slot
     uint32_t b1 = hashX % noOfBuckets; //1. kandidat
     uint32_t b2 = Alt(b1, f); //2. kandidat
     for(int i=0;i<4;i++){
@@ -104,7 +106,9 @@ int VacuumFilter::emptySlot(uint32_t b){
 }
 bool VacuumFilter::lookup(string x){
     uint32_t hashX = a5hash(x.data(), x.size(), 0); //hash itema
-    uint16_t f=(hashX & 0xFFFF) + 1; //fingerprint item-a
+    uint16_t f=(hashX & 0xFFFF); //fingerprint item-a
+    if (f == 0) 
+        f = 1; //0 oznacava prazni slot
     uint32_t b1 = hashX % noOfBuckets; //1. kandidat
     uint32_t b2 = Alt(b1, f); //2. kandidat
     for(int i=0;i<4;i++){
@@ -119,7 +123,9 @@ bool VacuumFilter::lookup(string x){
 }
 bool VacuumFilter::remove(string x){
     uint32_t hashX = a5hash(x.data(), x.size(), 0); //hash itema
-    uint16_t f=(hashX & 0xFFFF) + 1; //fingerprint item-a
+    uint16_t f=(hashX & 0xFFFF); //fingerprint item-a
+    if (f == 0) 
+        f = 1; //0 oznacava prazni slot
     uint32_t b1 = hashX % noOfBuckets; //1. kandidat
     uint32_t b2 = Alt(b1, f); //2. kandidat
     for(int i=0;i<4;i++){
