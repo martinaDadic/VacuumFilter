@@ -10,6 +10,9 @@ VacuumFilter::VacuumFilter(size_t m){ //konstruktor
     noOfBuckets = m;
     buckets.resize(noOfBuckets);
     n=0;
+    for (int i = 0; i < 4; i++) {
+        L[i] = 0;
+    }
 }
 uint32_t VacuumFilter::Alt(uint32_t b, uint16_t f){
     /* if (noOfBuckets < 262144){ //2^18
@@ -20,7 +23,7 @@ uint32_t VacuumFilter::Alt(uint32_t b, uint16_t f){
 uint32_t VacuumFilter::AltVeci(uint32_t b, uint16_t f){
     if (L[0]==0){ //ako nismo vec izracunal AR-ove
         for (int i=0;i<4;i++){
-            L[i]=RangeSelection(noOfBuckets, 0.95, (1.0 - i / 4.0));
+            L[i]=RangeSelection(noOfBuckets * 4 * 0.95,0.95, (1.0 - i / 4.0));
         }
         L[3]*=2; //povecamo zadnji da izbjegnemo fail
     }
@@ -30,8 +33,8 @@ uint32_t VacuumFilter::AltVeci(uint32_t b, uint16_t f){
 }
 uint32_t VacuumFilter::AltManji(uint32_t b, uint16_t f){
     uint32_t delta = a5hash(&f, sizeof(f), 0) % noOfBuckets;
-    uint32_t b_2=(b-delta) % noOfBuckets;
-    b_2=(noOfBuckets - 1 - b_2 + delta) % noOfBuckets;
+    uint32_t b_2=(b-delta + noOfBuckets) % noOfBuckets;
+    b_2=(noOfBuckets - 1 - b_2 + delta + noOfBuckets) % noOfBuckets;
     return b_2;
 }
 int VacuumFilter::RangeSelection(int n, float alpha, float r){
@@ -131,10 +134,12 @@ bool VacuumFilter::remove(string x){
     for(int i=0;i<4;i++){
         if (buckets[b1][i]==f){
             buckets[b1][i]=0;
+            n--;
             return true;
         }
         if (buckets[b2][i]==f){
             buckets[b2][i]=0;
+            n--;
             return true;
         }
     }
