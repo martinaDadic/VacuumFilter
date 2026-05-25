@@ -1,0 +1,1045 @@
+ecoli
+sequence length: 4641652
+k: 10
+total k-mers: 4641643
+unique k-mers: 898115
+positive queries: 10000
+negative queries: 10000
+number of buckets: 236346
+insert time: 0.137783
+number of failed inserts: 0
+
+lookup time: 0.106968
+number of false negatives: 0
+false positive rate: 0.000200
+
+remove time: 0.103913
+number of failed removes: 0
+
+seed: 42
+ecoli
+sequence length: 4641652
+k: 20
+total k-mers: 4641633
+unique k-mers: 4561265
+positive queries: 10000
+negative queries: 10000
+number of buckets: 1200332
+insert time: 1.125596
+number of failed inserts: 0
+
+lookup time: 0.020329
+number of false negatives: 0
+false positive rate: 0.000200
+
+remove time: 0.652652
+number of failed removes: 0
+
+seed: 42
+ecoli
+sequence length: 4641652
+k: 50
+total k-mers: 4641603
+unique k-mers: 4578840
+positive queries: 10000
+negative queries: 10000
+number of buckets: 1204957
+insert time: 1.135387
+number of failed inserts: 0
+
+lookup time: 0.017983
+number of false negatives: 0
+false positive rate: 0.000000
+
+remove time: 0.822058
+number of failed removes: 0
+
+seed: 42
+ecoli
+sequence length: 4641652
+k: 100
+total k-mers: 4641553
+unique k-mers: 4588610
+positive queries: 10000
+negative queries: 10000
+number of buckets: 1207528
+insert time: 1.598030
+number of failed inserts: 0
+
+lookup time: 0.020534
+number of false negatives: 0
+false positive rate: 0.000100
+
+remove time: 1.140805
+number of failed removes: 0
+
+seed: 42
+ecoli
+sequence length: 4641652
+k: 200
+total k-mers: 4641453
+unique k-mers: 4598333
+positive queries: 10000
+negative queries: 10000
+number of buckets: 1210087
+insert time: 2.036296
+number of failed inserts: 0
+
+lookup time: 0.020800
+number of false negatives: 0
+false positive rate: 0.000200
+
+remove time: 1.698931
+number of failed removes: 0
+
+seed: 42
+artificial_len1000
+sequence length: 1000
+k: 10
+total k-mers: 991
+unique k-mers: 991
+positive queries: 991
+negative queries: 10000
+number of buckets: 260
+insert time: 0.009034
+number of failed inserts: 0
+
+lookup time: 0.013619
+number of false negatives: 0
+false positive rate: 0.000200
+
+remove time: 0.000191
+number of failed removes: 0
+
+seed: 42
+artificial_len1000
+sequence length: 1000
+k: 20
+total k-mers: 981
+unique k-mers: 981
+positive queries: 981
+negative queries: 10000
+number of buckets: 258
+insert time: 0.008931
+number of failed inserts: 0
+
+lookup time: 0.011305
+number of false negatives: 0
+false positive rate: 0.000100
+
+remove time: 0.000191
+number of failed removes: 0
+
+seed: 42
+artificial_len1000
+sequence length: 1000
+k: 50
+total k-mers: 951
+unique k-mers: 951
+positive queries: 951
+negative queries: 10000
+number of buckets: 250
+insert time: 0.007752
+number of failed inserts: 0
+
+lookup time: 0.008852
+number of false negatives: 0
+false positive rate: 0.000100
+
+remove time: 0.000203
+number of failed removes: 0
+
+seed: 42
+artificial_len1000
+sequence length: 1000
+k: 100
+total k-mers: 901
+unique k-mers: 901
+positive queries: 901
+negative queries: 10000
+number of buckets: 237
+insert time: 0.015969
+number of failed inserts: 0
+
+lookup time: 0.009616
+number of false negatives: 0
+false positive rate: 0.000100
+
+remove time: 0.000245
+number of failed removes: 0
+
+seed: 42
+artificial_len1000
+sequence length: 1000
+k: 200
+total k-mers: 801
+unique k-mers: 801
+positive queries: 801
+negative queries: 10000
+number of buckets: 210
+insert time: 0.010774
+number of failed inserts: 0
+
+lookup time: 0.010969
+number of false negatives: 0
+false positive rate: 0.000100
+
+remove time: 0.000292
+number of failed removes: 0
+
+seed: 42
+artificial_len2000
+sequence length: 2000
+k: 10
+total k-mers: 1991
+unique k-mers: 1989
+positive queries: 1989
+negative queries: 10000
+number of buckets: 523
+insert time: 0.005942
+number of failed inserts: 0
+
+lookup time: 0.012261
+number of false negatives: 0
+false positive rate: 0.000100
+
+remove time: 0.000276
+number of failed removes: 0
+
+seed: 42
+artificial_len2000
+sequence length: 2000
+k: 20
+total k-mers: 1981
+unique k-mers: 1981
+positive queries: 1981
+negative queries: 10000
+number of buckets: 521
+insert time: 0.012835
+number of failed inserts: 0
+
+lookup time: 0.014202
+number of false negatives: 0
+false positive rate: 0.000100
+
+remove time: 0.000306
+number of failed removes: 0
+
+seed: 42
+artificial_len2000
+sequence length: 2000
+k: 50
+total k-mers: 1951
+unique k-mers: 1951
+positive queries: 1951
+negative queries: 10000
+number of buckets: 513
+insert time: 0.007774
+number of failed inserts: 0
+
+lookup time: 0.009860
+number of false negatives: 0
+false positive rate: 0.000100
+
+remove time: 0.000374
+number of failed removes: 0
+
+seed: 42
+artificial_len2000
+sequence length: 2000
+k: 100
+total k-mers: 1901
+unique k-mers: 1901
+positive queries: 1901
+negative queries: 10000
+number of buckets: 500
+insert time: 0.011160
+number of failed inserts: 0
+
+lookup time: 0.009754
+number of false negatives: 0
+false positive rate: 0.000200
+
+remove time: 0.000437
+number of failed removes: 0
+
+seed: 42
+artificial_len2000
+sequence length: 2000
+k: 200
+total k-mers: 1801
+unique k-mers: 1801
+positive queries: 1801
+negative queries: 10000
+number of buckets: 473
+insert time: 0.011918
+number of failed inserts: 0
+
+lookup time: 0.012200
+number of false negatives: 0
+false positive rate: 0.000100
+
+remove time: 0.000591
+number of failed removes: 0
+
+seed: 42
+artificial_len5000
+sequence length: 5000
+k: 10
+total k-mers: 4991
+unique k-mers: 4984
+positive queries: 4984
+negative queries: 10000
+number of buckets: 1311
+insert time: 0.008799
+number of failed inserts: 0
+
+lookup time: 0.012500
+number of false negatives: 0
+false positive rate: 0.000100
+
+remove time: 0.000642
+number of failed removes: 0
+
+seed: 42
+artificial_len5000
+sequence length: 5000
+k: 20
+total k-mers: 4981
+unique k-mers: 4981
+positive queries: 4981
+negative queries: 10000
+number of buckets: 1310
+insert time: 0.014249
+number of failed inserts: 0
+
+lookup time: 0.015185
+number of false negatives: 0
+false positive rate: 0.000100
+
+remove time: 0.000668
+number of failed removes: 0
+
+seed: 42
+artificial_len5000
+sequence length: 5000
+k: 50
+total k-mers: 4951
+unique k-mers: 4951
+positive queries: 4951
+negative queries: 10000
+number of buckets: 1302
+insert time: 0.008975
+number of failed inserts: 0
+
+lookup time: 0.010238
+number of false negatives: 0
+false positive rate: 0.000400
+
+remove time: 0.000788
+number of failed removes: 0
+
+seed: 42
+artificial_len5000
+sequence length: 5000
+k: 100
+total k-mers: 4901
+unique k-mers: 4901
+positive queries: 4901
+negative queries: 10000
+number of buckets: 1289
+insert time: 0.013270
+number of failed inserts: 0
+
+lookup time: 0.010944
+number of false negatives: 0
+false positive rate: 0.000100
+
+remove time: 0.001027
+number of failed removes: 0
+
+seed: 42
+artificial_len5000
+sequence length: 5000
+k: 200
+total k-mers: 4801
+unique k-mers: 4801
+positive queries: 4801
+negative queries: 10000
+number of buckets: 1263
+insert time: 0.012342
+number of failed inserts: 0
+
+lookup time: 0.013058
+number of false negatives: 0
+false positive rate: 0.000100
+
+remove time: 0.001529
+number of failed removes: 0
+
+seed: 42
+artificial_len10000
+sequence length: 10000
+k: 10
+total k-mers: 9991
+unique k-mers: 9940
+positive queries: 9940
+negative queries: 10000
+number of buckets: 2615
+insert time: 0.025129
+number of failed inserts: 0
+
+lookup time: 0.017609
+number of false negatives: 0
+false positive rate: 0.000000
+
+remove time: 0.001181
+number of failed removes: 0
+
+seed: 42
+artificial_len10000
+sequence length: 10000
+k: 20
+total k-mers: 9981
+unique k-mers: 9981
+positive queries: 9981
+negative queries: 10000
+number of buckets: 2626
+insert time: 0.014328
+number of failed inserts: 0
+
+lookup time: 0.014556
+number of false negatives: 0
+false positive rate: 0.000100
+
+remove time: 0.001240
+number of failed removes: 0
+
+seed: 42
+artificial_len10000
+sequence length: 10000
+k: 50
+total k-mers: 9951
+unique k-mers: 9951
+positive queries: 9951
+negative queries: 10000
+number of buckets: 2618
+insert time: 0.009804
+number of failed inserts: 0
+
+lookup time: 0.012772
+number of false negatives: 0
+false positive rate: 0.000100
+
+remove time: 0.001505
+number of failed removes: 0
+
+seed: 42
+artificial_len10000
+sequence length: 10000
+k: 100
+total k-mers: 9901
+unique k-mers: 9901
+positive queries: 9901
+negative queries: 10000
+number of buckets: 2605
+insert time: 0.014074
+number of failed inserts: 0
+
+lookup time: 0.014897
+number of false negatives: 0
+false positive rate: 0.000100
+
+remove time: 0.001944
+number of failed removes: 0
+
+seed: 42
+artificial_len10000
+sequence length: 10000
+k: 200
+total k-mers: 9801
+unique k-mers: 9801
+positive queries: 9801
+negative queries: 10000
+number of buckets: 2579
+insert time: 0.021827
+number of failed inserts: 0
+
+lookup time: 0.016627
+number of false negatives: 0
+false positive rate: 0.000100
+
+remove time: 0.002894
+number of failed removes: 0
+
+seed: 42
+artificial_len50000
+sequence length: 50000
+k: 10
+total k-mers: 49991
+unique k-mers: 48835
+positive queries: 10000
+negative queries: 10000
+number of buckets: 12851
+insert time: 0.012072
+number of failed inserts: 0
+
+lookup time: 0.016538
+number of false negatives: 0
+false positive rate: 0.000000
+
+remove time: 0.005249
+number of failed removes: 0
+
+seed: 42
+artificial_len50000
+sequence length: 50000
+k: 20
+total k-mers: 49981
+unique k-mers: 49981
+positive queries: 10000
+negative queries: 10000
+number of buckets: 13152
+insert time: 0.019154
+number of failed inserts: 0
+
+lookup time: 0.017703
+number of false negatives: 0
+false positive rate: 0.000000
+
+remove time: 0.006005
+number of failed removes: 0
+
+seed: 42
+artificial_len50000
+sequence length: 50000
+k: 50
+total k-mers: 49951
+unique k-mers: 49951
+positive queries: 10000
+negative queries: 10000
+number of buckets: 13145
+insert time: 0.015282
+number of failed inserts: 0
+
+lookup time: 0.012773
+number of false negatives: 0
+false positive rate: 0.000200
+
+remove time: 0.007377
+number of failed removes: 0
+
+seed: 42
+artificial_len50000
+sequence length: 50000
+k: 100
+total k-mers: 49901
+unique k-mers: 49901
+positive queries: 10000
+negative queries: 10000
+number of buckets: 13131
+insert time: 0.036513
+number of failed inserts: 0
+
+lookup time: 0.015455
+number of false negatives: 0
+false positive rate: 0.000000
+
+remove time: 0.009719
+number of failed removes: 0
+
+seed: 42
+artificial_len50000
+sequence length: 50000
+k: 200
+total k-mers: 49801
+unique k-mers: 49801
+positive queries: 10000
+negative queries: 10000
+number of buckets: 13105
+insert time: 0.072183
+number of failed inserts: 0
+
+lookup time: 0.017853
+number of false negatives: 0
+false positive rate: 0.000200
+
+remove time: 0.014904
+number of failed removes: 0
+
+seed: 42
+artificial_len100000
+sequence length: 100000
+k: 10
+total k-mers: 99991
+unique k-mers: 95322
+positive queries: 10000
+negative queries: 10000
+number of buckets: 25084
+insert time: 0.020025
+number of failed inserts: 0
+
+lookup time: 0.013703
+number of false negatives: 0
+false positive rate: 0.000000
+
+remove time: 0.010279
+number of failed removes: 0
+
+seed: 42
+artificial_len100000
+sequence length: 100000
+k: 20
+total k-mers: 99981
+unique k-mers: 99981
+positive queries: 10000
+negative queries: 10000
+number of buckets: 26310
+insert time: 0.034749
+number of failed inserts: 0
+
+lookup time: 0.017483
+number of false negatives: 0
+false positive rate: 0.000200
+
+remove time: 0.011964
+number of failed removes: 0
+
+seed: 42
+artificial_len100000
+sequence length: 100000
+k: 50
+total k-mers: 99951
+unique k-mers: 99951
+positive queries: 10000
+negative queries: 10000
+number of buckets: 26302
+insert time: 0.024066
+number of failed inserts: 0
+
+lookup time: 0.013283
+number of false negatives: 0
+false positive rate: 0.000100
+
+remove time: 0.014810
+number of failed removes: 0
+
+seed: 42
+artificial_len100000
+sequence length: 100000
+k: 100
+total k-mers: 99901
+unique k-mers: 99901
+positive queries: 10000
+negative queries: 10000
+number of buckets: 26289
+insert time: 0.077784
+number of failed inserts: 0
+
+lookup time: 0.015719
+number of false negatives: 0
+false positive rate: 0.000200
+
+remove time: 0.019632
+number of failed removes: 0
+
+seed: 42
+artificial_len100000
+sequence length: 100000
+k: 200
+total k-mers: 99801
+unique k-mers: 99801
+positive queries: 10000
+negative queries: 10000
+number of buckets: 26263
+insert time: 0.147220
+number of failed inserts: 0
+
+lookup time: 0.017989
+number of false negatives: 0
+false positive rate: 0.000000
+
+remove time: 0.030048
+number of failed removes: 0
+
+seed: 42
+artificial_len500000
+sequence length: 500000
+k: 10
+total k-mers: 499991
+unique k-mers: 397754
+positive queries: 10000
+negative queries: 10000
+number of buckets: 104672
+insert time: 0.067665
+number of failed inserts: 0
+
+lookup time: 0.039867
+number of false negatives: 0
+false positive rate: 0.000200
+
+remove time: 0.045106
+number of failed removes: 0
+
+seed: 42
+artificial_len500000
+sequence length: 500000
+k: 20
+total k-mers: 499981
+unique k-mers: 499981
+positive queries: 10000
+negative queries: 10000
+number of buckets: 131573
+insert time: 0.152391
+number of failed inserts: 0
+
+lookup time: 0.018779
+number of false negatives: 0
+false positive rate: 0.000400
+
+remove time: 0.062318
+number of failed removes: 0
+
+seed: 42
+artificial_len500000
+sequence length: 500000
+k: 50
+total k-mers: 499951
+unique k-mers: 499951
+positive queries: 10000
+negative queries: 10000
+number of buckets: 131566
+insert time: 0.112400
+number of failed inserts: 0
+
+lookup time: 0.015702
+number of false negatives: 0
+false positive rate: 0.000100
+
+remove time: 0.078140
+number of failed removes: 0
+
+seed: 42
+artificial_len500000
+sequence length: 500000
+k: 100
+total k-mers: 499901
+unique k-mers: 499901
+positive queries: 10000
+negative queries: 10000
+number of buckets: 131552
+insert time: 0.261244
+number of failed inserts: 0
+
+lookup time: 0.016535
+number of false negatives: 0
+false positive rate: 0.000100
+
+remove time: 0.105223
+number of failed removes: 0
+
+seed: 42
+artificial_len500000
+sequence length: 500000
+k: 200
+total k-mers: 499801
+unique k-mers: 499801
+positive queries: 10000
+negative queries: 10000
+number of buckets: 131526
+insert time: 0.305041
+number of failed inserts: 0
+
+lookup time: 0.018114
+number of false negatives: 0
+false positive rate: 0.000000
+
+remove time: 0.158935
+number of failed removes: 0
+
+seed: 42
+artificial_len1000000
+sequence length: 1000000
+k: 10
+total k-mers: 999991
+unique k-mers: 644941
+positive queries: 10000
+negative queries: 10000
+number of buckets: 169721
+insert time: 0.108215
+number of failed inserts: 0
+
+lookup time: 0.018670
+number of false negatives: 0
+false positive rate: 0.000000
+
+remove time: 0.074189
+number of failed removes: 0
+
+seed: 42
+artificial_len1000000
+sequence length: 1000000
+k: 20
+total k-mers: 999981
+unique k-mers: 999981
+positive queries: 10000
+negative queries: 10000
+number of buckets: 263152
+insert time: 0.296192
+number of failed inserts: 0
+
+lookup time: 0.021173
+number of false negatives: 0
+false positive rate: 0.000100
+
+remove time: 0.128539
+number of failed removes: 0
+
+seed: 42
+artificial_len1000000
+sequence length: 1000000
+k: 50
+total k-mers: 999951
+unique k-mers: 999951
+positive queries: 10000
+negative queries: 10000
+number of buckets: 263145
+insert time: 0.218420
+number of failed inserts: 0
+
+lookup time: 0.015813
+number of false negatives: 0
+false positive rate: 0.000300
+
+remove time: 0.159999
+number of failed removes: 0
+
+seed: 42
+artificial_len1000000
+sequence length: 1000000
+k: 100
+total k-mers: 999901
+unique k-mers: 999901
+positive queries: 10000
+negative queries: 10000
+number of buckets: 263131
+insert time: 0.390025
+number of failed inserts: 0
+
+lookup time: 0.016017
+number of false negatives: 0
+false positive rate: 0.000000
+
+remove time: 0.209148
+number of failed removes: 0
+
+seed: 42
+artificial_len1000000
+sequence length: 1000000
+k: 200
+total k-mers: 999801
+unique k-mers: 999801
+positive queries: 10000
+negative queries: 10000
+number of buckets: 263105
+insert time: 0.489948
+number of failed inserts: 0
+
+lookup time: 0.018672
+number of false negatives: 0
+false positive rate: 0.000000
+
+remove time: 0.323925
+number of failed removes: 0
+
+seed: 42
+artificial_len5000000
+sequence length: 5000000
+k: 10
+total k-mers: 4999991
+unique k-mers: 1039671
+positive queries: 10000
+negative queries: 8905
+number of buckets: 273597
+insert time: 0.166995
+number of failed inserts: 0
+
+lookup time: 0.018621
+number of false negatives: 0
+false positive rate: 0.000000
+
+remove time: 0.121374
+number of failed removes: 0
+
+seed: 42
+artificial_len5000000
+sequence length: 5000000
+k: 20
+total k-mers: 4999981
+unique k-mers: 4999967
+positive queries: 10000
+negative queries: 10000
+number of buckets: 1315780
+insert time: 1.146674
+number of failed inserts: 0
+
+lookup time: 0.021061
+number of false negatives: 0
+false positive rate: 0.000100
+
+remove time: 0.715709
+number of failed removes: 0
+
+seed: 42
+artificial_len5000000
+sequence length: 5000000
+k: 50
+total k-mers: 4999951
+unique k-mers: 4999951
+positive queries: 10000
+negative queries: 10000
+number of buckets: 1315776
+insert time: 1.234083
+number of failed inserts: 0
+
+lookup time: 0.018530
+number of false negatives: 0
+false positive rate: 0.000300
+
+remove time: 0.922586
+number of failed removes: 0
+
+seed: 42
+artificial_len5000000
+sequence length: 5000000
+k: 100
+total k-mers: 4999901
+unique k-mers: 4999901
+positive queries: 10000
+negative queries: 10000
+number of buckets: 1315763
+insert time: 1.688747
+number of failed inserts: 0
+
+lookup time: 0.018171
+number of false negatives: 0
+false positive rate: 0.000000
+
+remove time: 1.242814
+number of failed removes: 0
+
+seed: 42
+artificial_len5000000
+sequence length: 5000000
+k: 200
+total k-mers: 4999801
+unique k-mers: 4999801
+positive queries: 10000
+negative queries: 10000
+number of buckets: 1315737
+insert time: 2.275454
+number of failed inserts: 0
+
+lookup time: 0.020721
+number of false negatives: 0
+false positive rate: 0.000100
+
+remove time: 1.848958
+number of failed removes: 0
+
+seed: 42
+artificial_len10000000
+sequence length: 10000000
+k: 10
+total k-mers: 9999991
+unique k-mers: 1048488
+positive queries: 10000
+negative queries: 88
+number of buckets: 275917
+insert time: 0.175095
+number of failed inserts: 0
+
+lookup time: 0.014901
+number of false negatives: 0
+false positive rate: 0.000000
+
+remove time: 0.122055
+number of failed removes: 0
+
+seed: 42
+artificial_len10000000
+sequence length: 10000000
+k: 20
+total k-mers: 9999981
+unique k-mers: 9999928
+positive queries: 10000
+negative queries: 10000
+number of buckets: 2631560
+insert time: 2.935832
+number of failed inserts: 0
+
+lookup time: 0.021892
+number of false negatives: 0
+false positive rate: 0.000400
+
+remove time: 1.863730
+number of failed removes: 0
+
+seed: 42
+artificial_len10000000
+sequence length: 10000000
+k: 50
+total k-mers: 9999951
+unique k-mers: 9999951
+positive queries: 10000
+negative queries: 10000
+number of buckets: 2631566
+insert time: 3.133544
+number of failed inserts: 0
+
+lookup time: 0.018303
+number of false negatives: 0
+false positive rate: 0.000300
+
+remove time: 2.222064
+number of failed removes: 0
+
+seed: 42
+artificial_len10000000
+sequence length: 10000000
+k: 100
+total k-mers: 9999901
+unique k-mers: 9999901
+positive queries: 10000
+negative queries: 10000
+number of buckets: 2631552
+insert time: 3.877099
+number of failed inserts: 0
+
+lookup time: 0.022238
+number of false negatives: 0
+false positive rate: 0.000200
+
+remove time: 2.949958
+number of failed removes: 0
+
+seed: 42
+artificial_len10000000
+sequence length: 10000000
+k: 200
+total k-mers: 9999801
+unique k-mers: 9999801
+positive queries: 10000
+negative queries: 10000
+number of buckets: 2631526
+insert time: 4.987715
+number of failed inserts: 0
+
+lookup time: 0.023455
+number of false negatives: 0
+false positive rate: 0.000000
+
+remove time: 3.975905
+number of failed removes: 0
+
+seed: 42
