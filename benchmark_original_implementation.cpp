@@ -49,6 +49,7 @@ int main(){
         line.erase(0, line.find(';') + 1);
         results_file << vrijemeRemovea(filter,insertFile) << "\n";
         results_file << "seed: " << line.substr(0, line.find(';')) << "\n";
+        results_file << "memory consumption: " << filter.memory_consumption << "\n";
     }
     results_file.close();
     data_summary_file.close();

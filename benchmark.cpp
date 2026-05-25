@@ -26,7 +26,8 @@ int main(){
         line.erase(0, line.find(';') + 1);
         results_file << "total k-mers: " << line.substr(0, line.find(';')) << "\n";
         line.erase(0, line.find(';') + 1);
-        results_file << "unique k-mers: " << line.substr(0, line.find(';')) << "\n";
+        size_t uniqueKmers = stol(line.substr(0, line.find(';')));
+        results_file << "unique k-mers: " << uniqueKmers << "\n";
         noOfBuckets =  (size_t)(stol(line.substr(0, line.find(';')))/3.8); //3.8 = 4*0.95
         line.erase(0, line.find(';') + 1);
         results_file << "positive queries: " << line.substr(0, line.find(';')) << "\n";
@@ -36,7 +37,7 @@ int main(){
         line.erase(0, line.find(';') + 1);
         results_file << "number of buckets: " << noOfBuckets << "\n";
 
-        VacuumFilter filter(noOfBuckets);
+        VacuumFilter filter(noOfBuckets, uniqueKmers);
         string insertFile = line.substr(0, line.find(';'));
         line.erase(0, line.find(';') + 1);
         results_file << vrijemeInserta(filter,insertFile) << "\n";
@@ -44,6 +45,7 @@ int main(){
         line.erase(0, line.find(';') + 1);
         results_file << vrijemeRemovea(filter,insertFile) << "\n";
         results_file << "seed: " << line.substr(0, line.find(';')) << "\n";
+        results_file << "memory consumption: " << filter.memory_consumption() << "\n";
     }
     results_file.close();
     data_summary_file.close();
@@ -110,7 +112,7 @@ string vrijemeRemovea(VacuumFilter &filter, string fileName){
 
 void testiranjeVacuuma(){
     //ovdje testiram radi li moj vacuum filter ispravno
-    VacuumFilter filter(10000000);
+    VacuumFilter filter(10000000, 10000000);
     cout << "Load Factor Test za n=10000000, alpha=0.95, r=0.75 i L=20: " << filter.LoadFactorTest(1000, 0.95, 0.75, 20) <<"\n";
     cout << "Range selection za n=10000000, alpha=0.95, r=0.75: " << filter.RangeSelection(1000, 0.95, 0.75) <<"\n";
     int brojNeuspjelihInserta=0;

@@ -4,32 +4,33 @@
 
 using namespace std;
 
-
-
-VacuumFilter::VacuumFilter(size_t m){ //konstruktor
-    noOfBuckets = m;
+VacuumFilter::VacuumFilter(size_t m, size_t n){ //konstruktor
+    noOfBuckets = 2;
+    while (noOfBuckets < m) {
+        noOfBuckets <<= 1;
+    }
     buckets.resize(noOfBuckets);
-    n=0;
+    noOfItems = n;
     for (int i = 0; i < 4; i++) {
         L[i] = 0;
     }
 }
 uint32_t VacuumFilter::Alt(uint32_t b, uint16_t f){
-    /* if (noOfBuckets < 262144){ //2^18
+    if (noOfItems < 262144){ //2^18
         return AltManji(b, f);
-    } */
+    }
     return AltVeci(b, f);
 }
 uint32_t VacuumFilter::AltVeci(uint32_t b, uint16_t f){
     if (L[0]==0){ //ako nismo vec izracunal AR-ove
         for (int i=0;i<4;i++){
-            L[i]=RangeSelection(noOfBuckets * 4 * 0.95,0.95, (1.0 - i / 4.0));
+            L[i]=RangeSelection(noOfItems,0.95, (1.0 - i / 4.0));
         }
         L[3]*=2; //povecamo zadnji da izbjegnemo fail
     }
-    int l = L[f % 4]; //trenutni AR
-    uint32_t delta = a5hash(&f, sizeof(f), 0) % l;
-    return (b ^ delta) % noOfBuckets;
+    uint32_t l = L[f % 4]; //trenutni AR
+    uint16_t delta = a5hash(&f, sizeof(f), 0) %l;
+    return (b ^ delta) & (noOfBuckets - 1);
 }
 uint32_t VacuumFilter::AltManji(uint32_t b, uint16_t f){
     uint32_t delta = a5hash(&f, sizeof(f), 0) % noOfBuckets;
@@ -39,7 +40,7 @@ uint32_t VacuumFilter::AltManji(uint32_t b, uint16_t f){
 }
 int VacuumFilter::RangeSelection(int n, float alpha, float r){
     int L=1;
-    while (LoadFactorTest(n, alpha, r, L) != true)
+    while (LoadFactorTest(n, alpha, r, L) != true && L<noOfBuckets)
         L*=2;
     return L;
 }
@@ -58,20 +59,19 @@ float VacuumFilter::EstimatedMaxLoad(double N, int c){
 }
 bool VacuumFilter::insert(string x){
     uint32_t hashX = a5hash(x.data(), x.size(), 0); //hash itema
+    uint32_t hashBucket = a5hash(x.data(), x.size(), 1); //hash za biranje AR-a
     uint16_t f=(hashX & 0xFFFF); //fingerprint item-a
     if (f == 0) 
         f = 1; //0 oznacava prazni slot
-    uint32_t b1 = hashX % noOfBuckets; //1. kandidat
+    uint32_t b1 = hashBucket & (noOfBuckets - 1); //1. kandidat
     uint32_t b2 = Alt(b1, f); //2. kandidat
     for(int i=0;i<4;i++){
         if (buckets[b1][i]==0){
             buckets[b1][i]=f;
-            n++;
             return true;
         }
         else if (buckets[b2][i]==0){
             buckets[b2][i]=f;
-            n++;
             return true;
         }
     }
@@ -84,11 +84,11 @@ bool VacuumFilter::insert(string x){
     for(int i=0;i<MAXEVICTS;i++){
         for(int j=0;j<4;j++){
             uint16_t f1=buckets[bIduci][j];
-            int empty=emptySlot(Alt(bIduci, f1));//vraca mjesto slobodnog slota, ako ga ima, ako ne, vraca 0
+            uint32_t altBucket=Alt(bIduci, f1);
+            int empty=emptySlot(altBucket);//vraca mjesto slobodnog slota, ako ga ima, ako ne, vraca 0
             if(empty!=-1){
                 buckets[bIduci][j]=f;
-                buckets[Alt(bIduci, f1)][empty]=f1;
-                n++;
+                buckets[altBucket][empty]=f1;
                 return true;
             }
         }
@@ -109,10 +109,11 @@ int VacuumFilter::emptySlot(uint32_t b){
 }
 bool VacuumFilter::lookup(string x){
     uint32_t hashX = a5hash(x.data(), x.size(), 0); //hash itema
+    uint32_t hashBucket = a5hash(x.data(), x.size(), 1); //hash za biranje AR-a
     uint16_t f=(hashX & 0xFFFF); //fingerprint item-a
     if (f == 0) 
         f = 1; //0 oznacava prazni slot
-    uint32_t b1 = hashX % noOfBuckets; //1. kandidat
+    uint32_t b1 = hashBucket & (noOfBuckets - 1); //1. kandidat
     uint32_t b2 = Alt(b1, f); //2. kandidat
     for(int i=0;i<4;i++){
         if (buckets[b1][i]==f){
@@ -126,22 +127,24 @@ bool VacuumFilter::lookup(string x){
 }
 bool VacuumFilter::remove(string x){
     uint32_t hashX = a5hash(x.data(), x.size(), 0); //hash itema
+    uint32_t hashBucket = a5hash(x.data(), x.size(), 1); //hash za biranje AR-a
     uint16_t f=(hashX & 0xFFFF); //fingerprint item-a
     if (f == 0) 
         f = 1; //0 oznacava prazni slot
-    uint32_t b1 = hashX % noOfBuckets; //1. kandidat
+    uint32_t b1 = hashBucket & (noOfBuckets - 1); //1. kandidat
     uint32_t b2 = Alt(b1, f); //2. kandidat
     for(int i=0;i<4;i++){
         if (buckets[b1][i]==f){
             buckets[b1][i]=0;
-            n--;
             return true;
         }
         if (buckets[b2][i]==f){
             buckets[b2][i]=0;
-            n--;
             return true;
         }
     }
     return false;
+}
+size_t VacuumFilter::memory_consumption(){
+    return noOfBuckets*sizeof(array<uint16_t,4>);
 }

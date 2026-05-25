@@ -6,17 +6,18 @@ unique k-mers: 898115
 positive queries: 10000
 negative queries: 10000
 number of buckets: 236346
-insert time: 0.137783
+insert time: 0.146670
 number of failed inserts: 0
 
-lookup time: 0.106968
+lookup time: 0.005704
 number of false negatives: 0
 false positive rate: 0.000200
 
-remove time: 0.103913
+remove time: 0.108392
 number of failed removes: 0
 
 seed: 42
+memory consumption: 1843216
 ecoli
 sequence length: 4641652
 k: 20
@@ -25,17 +26,18 @@ unique k-mers: 4561265
 positive queries: 10000
 negative queries: 10000
 number of buckets: 1200332
-insert time: 1.125596
+insert time: 1.121288
 number of failed inserts: 0
 
-lookup time: 0.020329
+lookup time: 0.008428
 number of false negatives: 0
 false positive rate: 0.000200
 
-remove time: 0.652652
+remove time: 0.662375
 number of failed removes: 0
 
 seed: 42
+memory consumption: 8970256
 ecoli
 sequence length: 4641652
 k: 50
@@ -44,17 +46,18 @@ unique k-mers: 4578840
 positive queries: 10000
 negative queries: 10000
 number of buckets: 1204957
-insert time: 1.135387
+insert time: 1.067385
 number of failed inserts: 0
 
-lookup time: 0.017983
+lookup time: 0.007796
 number of false negatives: 0
 false positive rate: 0.000000
 
-remove time: 0.822058
+remove time: 0.837477
 number of failed removes: 0
 
 seed: 42
+memory consumption: 8970256
 ecoli
 sequence length: 4641652
 k: 100
@@ -63,17 +66,18 @@ unique k-mers: 4588610
 positive queries: 10000
 negative queries: 10000
 number of buckets: 1207528
-insert time: 1.598030
+insert time: 1.631133
 number of failed inserts: 0
 
-lookup time: 0.020534
+lookup time: 0.009376
 number of false negatives: 0
 false positive rate: 0.000100
 
-remove time: 1.140805
+remove time: 1.107138
 number of failed removes: 0
 
 seed: 42
+memory consumption: 8970256
 ecoli
 sequence length: 4641652
 k: 200
@@ -82,17 +86,18 @@ unique k-mers: 4598333
 positive queries: 10000
 negative queries: 10000
 number of buckets: 1210087
-insert time: 2.036296
+insert time: 1.912634
 number of failed inserts: 0
 
-lookup time: 0.020800
+lookup time: 0.010734
 number of false negatives: 0
 false positive rate: 0.000200
 
-remove time: 1.698931
+remove time: 1.663117
 number of failed removes: 0
 
 seed: 42
+memory consumption: 9093136
 artificial_len1000
 sequence length: 1000
 k: 10
@@ -101,17 +106,18 @@ unique k-mers: 991
 positive queries: 991
 negative queries: 10000
 number of buckets: 260
-insert time: 0.009034
+insert time: 0.000230
 number of failed inserts: 0
 
-lookup time: 0.013619
+lookup time: 0.002972
 number of false negatives: 0
 false positive rate: 0.000200
 
-remove time: 0.000191
+remove time: 0.000133
 number of failed removes: 0
 
 seed: 42
+memory consumption: 2416
 artificial_len1000
 sequence length: 1000
 k: 20
@@ -120,17 +126,18 @@ unique k-mers: 981
 positive queries: 981
 negative queries: 10000
 number of buckets: 258
-insert time: 0.008931
+insert time: 0.000198
 number of failed inserts: 0
 
-lookup time: 0.011305
+lookup time: 0.003591
 number of false negatives: 0
 false positive rate: 0.000100
 
-remove time: 0.000191
+remove time: 0.000148
 number of failed removes: 0
 
 seed: 42
+memory consumption: 1936
 artificial_len1000
 sequence length: 1000
 k: 50
@@ -139,17 +146,18 @@ unique k-mers: 951
 positive queries: 951
 negative queries: 10000
 number of buckets: 250
-insert time: 0.007752
+insert time: 0.000210
 number of failed inserts: 0
 
-lookup time: 0.008852
+lookup time: 0.003981
 number of false negatives: 0
 false positive rate: 0.000100
 
-remove time: 0.000203
+remove time: 0.000173
 number of failed removes: 0
 
 seed: 42
+memory consumption: 1936
 artificial_len1000
 sequence length: 1000
 k: 100
@@ -158,17 +166,18 @@ unique k-mers: 901
 positive queries: 901
 negative queries: 10000
 number of buckets: 237
-insert time: 0.015969
+insert time: 0.000240
 number of failed inserts: 0
 
-lookup time: 0.009616
+lookup time: 0.004444
 number of false negatives: 0
 false positive rate: 0.000100
 
-remove time: 0.000245
+remove time: 0.000205
 number of failed removes: 0
 
 seed: 42
+memory consumption: 1936
 artificial_len1000
 sequence length: 1000
 k: 200
@@ -177,17 +186,18 @@ unique k-mers: 801
 positive queries: 801
 negative queries: 10000
 number of buckets: 210
-insert time: 0.010774
+insert time: 0.000289
 number of failed inserts: 0
 
-lookup time: 0.010969
+lookup time: 0.005560
 number of false negatives: 0
 false positive rate: 0.000100
 
-remove time: 0.000292
+remove time: 0.000254
 number of failed removes: 0
 
 seed: 42
+memory consumption: 1936
 artificial_len2000
 sequence length: 2000
 k: 10
@@ -196,17 +206,18 @@ unique k-mers: 1989
 positive queries: 1989
 negative queries: 10000
 number of buckets: 523
-insert time: 0.005942
+insert time: 0.000285
 number of failed inserts: 0
 
-lookup time: 0.012261
+lookup time: 0.003161
 number of false negatives: 0
 false positive rate: 0.000100
 
-remove time: 0.000276
+remove time: 0.000233
 number of failed removes: 0
 
 seed: 42
+memory consumption: 5776
 artificial_len2000
 sequence length: 2000
 k: 20
@@ -215,17 +226,18 @@ unique k-mers: 1981
 positive queries: 1981
 negative queries: 10000
 number of buckets: 521
-insert time: 0.012835
+insert time: 0.000317
 number of failed inserts: 0
 
-lookup time: 0.014202
+lookup time: 0.004038
 number of false negatives: 0
 false positive rate: 0.000100
 
-remove time: 0.000306
+remove time: 0.000260
 number of failed removes: 0
 
 seed: 42
+memory consumption: 4816
 artificial_len2000
 sequence length: 2000
 k: 50
@@ -234,17 +246,18 @@ unique k-mers: 1951
 positive queries: 1951
 negative queries: 10000
 number of buckets: 513
-insert time: 0.007774
+insert time: 0.000410
 number of failed inserts: 0
 
-lookup time: 0.009860
+lookup time: 0.004428
 number of false negatives: 0
 false positive rate: 0.000100
 
-remove time: 0.000374
+remove time: 0.000331
 number of failed removes: 0
 
 seed: 42
+memory consumption: 3856
 artificial_len2000
 sequence length: 2000
 k: 100
@@ -253,17 +266,18 @@ unique k-mers: 1901
 positive queries: 1901
 negative queries: 10000
 number of buckets: 500
-insert time: 0.011160
+insert time: 0.000482
 number of failed inserts: 0
 
-lookup time: 0.009754
+lookup time: 0.004793
 number of false negatives: 0
 false positive rate: 0.000200
 
-remove time: 0.000437
+remove time: 0.000388
 number of failed removes: 0
 
 seed: 42
+memory consumption: 3856
 artificial_len2000
 sequence length: 2000
 k: 200
@@ -272,17 +286,18 @@ unique k-mers: 1801
 positive queries: 1801
 negative queries: 10000
 number of buckets: 473
-insert time: 0.011918
+insert time: 0.000637
 number of failed inserts: 0
 
-lookup time: 0.012200
+lookup time: 0.005993
 number of false negatives: 0
 false positive rate: 0.000100
 
-remove time: 0.000591
+remove time: 0.000549
 number of failed removes: 0
 
 seed: 42
+memory consumption: 3856
 artificial_len5000
 sequence length: 5000
 k: 10
@@ -291,17 +306,18 @@ unique k-mers: 4984
 positive queries: 4984
 negative queries: 10000
 number of buckets: 1311
-insert time: 0.008799
+insert time: 0.000662
 number of failed inserts: 0
 
-lookup time: 0.012500
+lookup time: 0.004067
 number of false negatives: 0
 false positive rate: 0.000100
 
-remove time: 0.000642
+remove time: 0.000560
 number of failed removes: 0
 
 seed: 42
+memory consumption: 11536
 artificial_len5000
 sequence length: 5000
 k: 20
@@ -310,17 +326,18 @@ unique k-mers: 4981
 positive queries: 4981
 negative queries: 10000
 number of buckets: 1310
-insert time: 0.014249
+insert time: 0.000693
 number of failed inserts: 0
 
-lookup time: 0.015185
+lookup time: 0.005046
 number of false negatives: 0
 false positive rate: 0.000100
 
-remove time: 0.000668
+remove time: 0.000594
 number of failed removes: 0
 
 seed: 42
+memory consumption: 11536
 artificial_len5000
 sequence length: 5000
 k: 50
@@ -329,17 +346,18 @@ unique k-mers: 4951
 positive queries: 4951
 negative queries: 10000
 number of buckets: 1302
-insert time: 0.008975
+insert time: 0.000848
 number of failed inserts: 0
 
-lookup time: 0.010238
+lookup time: 0.005573
 number of false negatives: 0
 false positive rate: 0.000400
 
-remove time: 0.000788
+remove time: 0.000718
 number of failed removes: 0
 
 seed: 42
+memory consumption: 11536
 artificial_len5000
 sequence length: 5000
 k: 100
@@ -348,17 +366,18 @@ unique k-mers: 4901
 positive queries: 4901
 negative queries: 10000
 number of buckets: 1289
-insert time: 0.013270
+insert time: 0.001083
 number of failed inserts: 0
 
-lookup time: 0.010944
+lookup time: 0.006004
 number of false negatives: 0
 false positive rate: 0.000100
 
-remove time: 0.001027
+remove time: 0.000932
 number of failed removes: 0
 
 seed: 42
+memory consumption: 11536
 artificial_len5000
 sequence length: 5000
 k: 200
@@ -367,17 +386,18 @@ unique k-mers: 4801
 positive queries: 4801
 negative queries: 10000
 number of buckets: 1263
-insert time: 0.012342
+insert time: 0.001570
 number of failed inserts: 0
 
-lookup time: 0.013058
+lookup time: 0.007491
 number of false negatives: 0
 false positive rate: 0.000100
 
-remove time: 0.001529
+remove time: 0.001372
 number of failed removes: 0
 
 seed: 42
+memory consumption: 11536
 artificial_len10000
 sequence length: 10000
 k: 10
@@ -386,17 +406,18 @@ unique k-mers: 9940
 positive queries: 9940
 negative queries: 10000
 number of buckets: 2615
-insert time: 0.025129
+insert time: 0.001284
 number of failed inserts: 0
 
-lookup time: 0.017609
+lookup time: 0.005330
 number of false negatives: 0
 false positive rate: 0.000000
 
-remove time: 0.001181
+remove time: 0.001068
 number of failed removes: 0
 
 seed: 42
+memory consumption: 23056
 artificial_len10000
 sequence length: 10000
 k: 20
@@ -405,17 +426,18 @@ unique k-mers: 9981
 positive queries: 9981
 negative queries: 10000
 number of buckets: 2626
-insert time: 0.014328
+insert time: 0.001410
 number of failed inserts: 0
 
-lookup time: 0.014556
+lookup time: 0.006631
 number of false negatives: 0
 false positive rate: 0.000100
 
-remove time: 0.001240
+remove time: 0.001172
 number of failed removes: 0
 
 seed: 42
+memory consumption: 23056
 artificial_len10000
 sequence length: 10000
 k: 50
@@ -424,17 +446,18 @@ unique k-mers: 9951
 positive queries: 9951
 negative queries: 10000
 number of buckets: 2618
-insert time: 0.009804
+insert time: 0.001652
 number of failed inserts: 0
 
-lookup time: 0.012772
+lookup time: 0.007381
 number of false negatives: 0
 false positive rate: 0.000100
 
-remove time: 0.001505
+remove time: 0.001431
 number of failed removes: 0
 
 seed: 42
+memory consumption: 23056
 artificial_len10000
 sequence length: 10000
 k: 100
@@ -443,17 +466,18 @@ unique k-mers: 9901
 positive queries: 9901
 negative queries: 10000
 number of buckets: 2605
-insert time: 0.014074
+insert time: 0.002157
 number of failed inserts: 0
 
-lookup time: 0.014897
+lookup time: 0.007987
 number of false negatives: 0
 false positive rate: 0.000100
 
-remove time: 0.001944
+remove time: 0.001879
 number of failed removes: 0
 
 seed: 42
+memory consumption: 23056
 artificial_len10000
 sequence length: 10000
 k: 200
@@ -462,17 +486,18 @@ unique k-mers: 9801
 positive queries: 9801
 negative queries: 10000
 number of buckets: 2579
-insert time: 0.021827
+insert time: 0.003191
 number of failed inserts: 0
 
-lookup time: 0.016627
+lookup time: 0.009939
 number of false negatives: 0
 false positive rate: 0.000100
 
-remove time: 0.002894
+remove time: 0.002895
 number of failed removes: 0
 
 seed: 42
+memory consumption: 23056
 artificial_len50000
 sequence length: 50000
 k: 10
@@ -481,17 +506,18 @@ unique k-mers: 48835
 positive queries: 10000
 negative queries: 10000
 number of buckets: 12851
-insert time: 0.012072
+insert time: 0.006019
 number of failed inserts: 0
 
-lookup time: 0.016538
+lookup time: 0.005375
 number of false negatives: 0
 false positive rate: 0.000000
 
-remove time: 0.005249
+remove time: 0.005057
 number of failed removes: 0
 
 seed: 42
+memory consumption: 122896
 artificial_len50000
 sequence length: 50000
 k: 20
@@ -500,17 +526,18 @@ unique k-mers: 49981
 positive queries: 10000
 negative queries: 10000
 number of buckets: 13152
-insert time: 0.019154
+insert time: 0.006664
 number of failed inserts: 0
 
-lookup time: 0.017703
+lookup time: 0.006656
 number of false negatives: 0
 false positive rate: 0.000000
 
-remove time: 0.006005
+remove time: 0.005686
 number of failed removes: 0
 
 seed: 42
+memory consumption: 122896
 artificial_len50000
 sequence length: 50000
 k: 50
@@ -519,17 +546,18 @@ unique k-mers: 49951
 positive queries: 10000
 negative queries: 10000
 number of buckets: 13145
-insert time: 0.015282
+insert time: 0.008088
 number of failed inserts: 0
 
-lookup time: 0.012773
+lookup time: 0.007286
 number of false negatives: 0
 false positive rate: 0.000200
 
-remove time: 0.007377
+remove time: 0.007145
 number of failed removes: 0
 
 seed: 42
+memory consumption: 122896
 artificial_len50000
 sequence length: 50000
 k: 100
@@ -538,17 +566,18 @@ unique k-mers: 49901
 positive queries: 10000
 negative queries: 10000
 number of buckets: 13131
-insert time: 0.036513
+insert time: 0.010600
 number of failed inserts: 0
 
-lookup time: 0.015455
+lookup time: 0.007975
 number of false negatives: 0
 false positive rate: 0.000000
 
-remove time: 0.009719
+remove time: 0.009522
 number of failed removes: 0
 
 seed: 42
+memory consumption: 122896
 artificial_len50000
 sequence length: 50000
 k: 200
@@ -557,17 +586,18 @@ unique k-mers: 49801
 positive queries: 10000
 negative queries: 10000
 number of buckets: 13105
-insert time: 0.072183
+insert time: 0.015832
 number of failed inserts: 0
 
-lookup time: 0.017853
+lookup time: 0.010070
 number of false negatives: 0
 false positive rate: 0.000200
 
-remove time: 0.014904
+remove time: 0.014621
 number of failed removes: 0
 
 seed: 42
+memory consumption: 122896
 artificial_len100000
 sequence length: 100000
 k: 10
@@ -576,17 +606,18 @@ unique k-mers: 95322
 positive queries: 10000
 negative queries: 10000
 number of buckets: 25084
-insert time: 0.020025
+insert time: 0.011647
 number of failed inserts: 0
 
-lookup time: 0.013703
+lookup time: 0.005305
 number of false negatives: 0
 false positive rate: 0.000000
 
-remove time: 0.010279
+remove time: 0.009998
 number of failed removes: 0
 
 seed: 42
+memory consumption: 245776
 artificial_len100000
 sequence length: 100000
 k: 20
@@ -595,17 +626,18 @@ unique k-mers: 99981
 positive queries: 10000
 negative queries: 10000
 number of buckets: 26310
-insert time: 0.034749
+insert time: 0.013348
 number of failed inserts: 0
 
-lookup time: 0.017483
+lookup time: 0.006614
 number of false negatives: 0
 false positive rate: 0.000200
 
-remove time: 0.011964
+remove time: 0.011527
 number of failed removes: 0
 
 seed: 42
+memory consumption: 245776
 artificial_len100000
 sequence length: 100000
 k: 50
@@ -614,17 +646,18 @@ unique k-mers: 99951
 positive queries: 10000
 negative queries: 10000
 number of buckets: 26302
-insert time: 0.024066
+insert time: 0.016140
 number of failed inserts: 0
 
-lookup time: 0.013283
+lookup time: 0.007388
 number of false negatives: 0
 false positive rate: 0.000100
 
-remove time: 0.014810
+remove time: 0.014322
 number of failed removes: 0
 
 seed: 42
+memory consumption: 245776
 artificial_len100000
 sequence length: 100000
 k: 100
@@ -633,17 +666,18 @@ unique k-mers: 99901
 positive queries: 10000
 negative queries: 10000
 number of buckets: 26289
-insert time: 0.077784
+insert time: 0.021161
 number of failed inserts: 0
 
-lookup time: 0.015719
+lookup time: 0.008005
 number of false negatives: 0
 false positive rate: 0.000200
 
-remove time: 0.019632
+remove time: 0.019391
 number of failed removes: 0
 
 seed: 42
+memory consumption: 245776
 artificial_len100000
 sequence length: 100000
 k: 200
@@ -652,17 +686,18 @@ unique k-mers: 99801
 positive queries: 10000
 negative queries: 10000
 number of buckets: 26263
-insert time: 0.147220
+insert time: 0.031939
 number of failed inserts: 0
 
-lookup time: 0.017989
+lookup time: 0.010150
 number of false negatives: 0
 false positive rate: 0.000000
 
-remove time: 0.030048
+remove time: 0.029657
 number of failed removes: 0
 
 seed: 42
+memory consumption: 245776
 artificial_len500000
 sequence length: 500000
 k: 10
@@ -671,17 +706,18 @@ unique k-mers: 397754
 positive queries: 10000
 negative queries: 10000
 number of buckets: 104672
-insert time: 0.067665
+insert time: 0.056947
 number of failed inserts: 0
 
-lookup time: 0.039867
+lookup time: 0.005389
 number of false negatives: 0
 false positive rate: 0.000200
 
-remove time: 0.045106
+remove time: 0.043305
 number of failed removes: 0
 
 seed: 42
+memory consumption: 798736
 artificial_len500000
 sequence length: 500000
 k: 20
@@ -690,17 +726,18 @@ unique k-mers: 499981
 positive queries: 10000
 negative queries: 10000
 number of buckets: 131573
-insert time: 0.152391
+insert time: 0.085387
 number of failed inserts: 0
 
-lookup time: 0.018779
+lookup time: 0.006667
 number of false negatives: 0
 false positive rate: 0.000400
 
-remove time: 0.062318
+remove time: 0.060973
 number of failed removes: 0
 
 seed: 42
+memory consumption: 983056
 artificial_len500000
 sequence length: 500000
 k: 50
@@ -709,17 +746,18 @@ unique k-mers: 499951
 positive queries: 10000
 negative queries: 10000
 number of buckets: 131566
-insert time: 0.112400
+insert time: 0.102022
 number of failed inserts: 0
 
-lookup time: 0.015702
+lookup time: 0.008010
 number of false negatives: 0
 false positive rate: 0.000100
 
-remove time: 0.078140
+remove time: 0.080063
 number of failed removes: 0
 
 seed: 42
+memory consumption: 983056
 artificial_len500000
 sequence length: 500000
 k: 100
@@ -728,17 +766,18 @@ unique k-mers: 499901
 positive queries: 10000
 negative queries: 10000
 number of buckets: 131552
-insert time: 0.261244
+insert time: 0.130795
 number of failed inserts: 0
 
-lookup time: 0.016535
+lookup time: 0.008300
 number of false negatives: 0
 false positive rate: 0.000100
 
-remove time: 0.105223
+remove time: 0.104425
 number of failed removes: 0
 
 seed: 42
+memory consumption: 983056
 artificial_len500000
 sequence length: 500000
 k: 200
@@ -747,17 +786,18 @@ unique k-mers: 499801
 positive queries: 10000
 negative queries: 10000
 number of buckets: 131526
-insert time: 0.305041
+insert time: 0.185484
 number of failed inserts: 0
 
-lookup time: 0.018114
+lookup time: 0.011002
 number of false negatives: 0
 false positive rate: 0.000000
 
-remove time: 0.158935
+remove time: 0.163252
 number of failed removes: 0
 
 seed: 42
+memory consumption: 983056
 artificial_len1000000
 sequence length: 1000000
 k: 10
@@ -766,17 +806,18 @@ unique k-mers: 644941
 positive queries: 10000
 negative queries: 10000
 number of buckets: 169721
-insert time: 0.108215
+insert time: 0.101143
 number of failed inserts: 0
 
-lookup time: 0.018670
+lookup time: 0.005819
 number of false negatives: 0
 false positive rate: 0.000000
 
-remove time: 0.074189
+remove time: 0.074461
 number of failed removes: 0
 
 seed: 42
+memory consumption: 1290256
 artificial_len1000000
 sequence length: 1000000
 k: 20
@@ -785,17 +826,18 @@ unique k-mers: 999981
 positive queries: 10000
 negative queries: 10000
 number of buckets: 263152
-insert time: 0.296192
+insert time: 0.181939
 number of failed inserts: 0
 
-lookup time: 0.021173
+lookup time: 0.007070
 number of false negatives: 0
 false positive rate: 0.000100
 
-remove time: 0.128539
+remove time: 0.163668
 number of failed removes: 0
 
 seed: 42
+memory consumption: 1966096
 artificial_len1000000
 sequence length: 1000000
 k: 50
@@ -804,17 +846,18 @@ unique k-mers: 999951
 positive queries: 10000
 negative queries: 10000
 number of buckets: 263145
-insert time: 0.218420
+insert time: 0.308586
 number of failed inserts: 0
 
-lookup time: 0.015813
+lookup time: 0.007834
 number of false negatives: 0
 false positive rate: 0.000300
 
-remove time: 0.159999
+remove time: 0.181163
 number of failed removes: 0
 
 seed: 42
+memory consumption: 1966096
 artificial_len1000000
 sequence length: 1000000
 k: 100
@@ -823,17 +866,18 @@ unique k-mers: 999901
 positive queries: 10000
 negative queries: 10000
 number of buckets: 263131
-insert time: 0.390025
+insert time: 0.280090
 number of failed inserts: 0
 
-lookup time: 0.016017
+lookup time: 0.008293
 number of false negatives: 0
 false positive rate: 0.000000
 
-remove time: 0.209148
+remove time: 0.239973
 number of failed removes: 0
 
 seed: 42
+memory consumption: 1966096
 artificial_len1000000
 sequence length: 1000000
 k: 200
@@ -842,17 +886,18 @@ unique k-mers: 999801
 positive queries: 10000
 negative queries: 10000
 number of buckets: 263105
-insert time: 0.489948
+insert time: 0.387111
 number of failed inserts: 0
 
-lookup time: 0.018672
+lookup time: 0.010533
 number of false negatives: 0
 false positive rate: 0.000000
 
-remove time: 0.323925
+remove time: 0.331279
 number of failed removes: 0
 
 seed: 42
+memory consumption: 1966096
 artificial_len5000000
 sequence length: 5000000
 k: 10
@@ -861,17 +906,18 @@ unique k-mers: 1039671
 positive queries: 10000
 negative queries: 8905
 number of buckets: 273597
-insert time: 0.166995
+insert time: 0.158702
 number of failed inserts: 0
 
-lookup time: 0.018621
+lookup time: 0.005336
 number of false negatives: 0
 false positive rate: 0.000000
 
-remove time: 0.121374
+remove time: 0.123349
 number of failed removes: 0
 
 seed: 42
+memory consumption: 2088976
 artificial_len5000000
 sequence length: 5000000
 k: 20
@@ -880,17 +926,18 @@ unique k-mers: 4999967
 positive queries: 10000
 negative queries: 10000
 number of buckets: 1315780
-insert time: 1.146674
+insert time: 1.088763
 number of failed inserts: 0
 
-lookup time: 0.021061
+lookup time: 0.007024
 number of false negatives: 0
 false positive rate: 0.000100
 
-remove time: 0.715709
+remove time: 0.748009
 number of failed removes: 0
 
 seed: 42
+memory consumption: 9830416
 artificial_len5000000
 sequence length: 5000000
 k: 50
@@ -899,17 +946,18 @@ unique k-mers: 4999951
 positive queries: 10000
 negative queries: 10000
 number of buckets: 1315776
-insert time: 1.234083
+insert time: 1.303193
 number of failed inserts: 0
 
-lookup time: 0.018530
+lookup time: 0.008550
 number of false negatives: 0
 false positive rate: 0.000300
 
-remove time: 0.922586
+remove time: 0.914583
 number of failed removes: 0
 
 seed: 42
+memory consumption: 9830416
 artificial_len5000000
 sequence length: 5000000
 k: 100
@@ -918,17 +966,18 @@ unique k-mers: 4999901
 positive queries: 10000
 negative queries: 10000
 number of buckets: 1315763
-insert time: 1.688747
+insert time: 1.702922
 number of failed inserts: 0
 
-lookup time: 0.018171
+lookup time: 0.010088
 number of false negatives: 0
 false positive rate: 0.000000
 
-remove time: 1.242814
+remove time: 1.351455
 number of failed removes: 0
 
 seed: 42
+memory consumption: 9830416
 artificial_len5000000
 sequence length: 5000000
 k: 200
@@ -937,17 +986,18 @@ unique k-mers: 4999801
 positive queries: 10000
 negative queries: 10000
 number of buckets: 1315737
-insert time: 2.275454
+insert time: 2.443303
 number of failed inserts: 0
 
-lookup time: 0.020721
+lookup time: 0.013227
 number of false negatives: 0
 false positive rate: 0.000100
 
-remove time: 1.848958
+remove time: 2.019785
 number of failed removes: 0
 
 seed: 42
+memory consumption: 9830416
 artificial_len10000000
 sequence length: 10000000
 k: 10
@@ -956,17 +1006,18 @@ unique k-mers: 1048488
 positive queries: 10000
 negative queries: 88
 number of buckets: 275917
-insert time: 0.175095
+insert time: 0.174376
 number of failed inserts: 0
 
-lookup time: 0.014901
+lookup time: 0.002906
 number of false negatives: 0
 false positive rate: 0.000000
 
-remove time: 0.122055
+remove time: 0.128234
 number of failed removes: 0
 
 seed: 42
+memory consumption: 2088976
 artificial_len10000000
 sequence length: 10000000
 k: 20
@@ -975,17 +1026,18 @@ unique k-mers: 9999928
 positive queries: 10000
 negative queries: 10000
 number of buckets: 2631560
-insert time: 2.935832
+insert time: 2.939161
 number of failed inserts: 0
 
-lookup time: 0.021892
+lookup time: 0.009331
 number of false negatives: 0
 false positive rate: 0.000400
 
-remove time: 1.863730
+remove time: 2.107734
 number of failed removes: 0
 
 seed: 42
+memory consumption: 19537936
 artificial_len10000000
 sequence length: 10000000
 k: 50
@@ -994,17 +1046,18 @@ unique k-mers: 9999951
 positive queries: 10000
 negative queries: 10000
 number of buckets: 2631566
-insert time: 3.133544
+insert time: 3.405248
 number of failed inserts: 0
 
-lookup time: 0.018303
+lookup time: 0.009867
 number of false negatives: 0
 false positive rate: 0.000300
 
-remove time: 2.222064
+remove time: 2.974904
 number of failed removes: 0
 
 seed: 42
+memory consumption: 19537936
 artificial_len10000000
 sequence length: 10000000
 k: 100
@@ -1013,17 +1066,18 @@ unique k-mers: 9999901
 positive queries: 10000
 negative queries: 10000
 number of buckets: 2631552
-insert time: 3.877099
+insert time: 5.055399
 number of failed inserts: 0
 
-lookup time: 0.022238
+lookup time: 0.014460
 number of false negatives: 0
 false positive rate: 0.000200
 
-remove time: 2.949958
+remove time: 4.222904
 number of failed removes: 0
 
 seed: 42
+memory consumption: 19537936
 artificial_len10000000
 sequence length: 10000000
 k: 200
@@ -1032,14 +1086,15 @@ unique k-mers: 9999801
 positive queries: 10000
 negative queries: 10000
 number of buckets: 2631526
-insert time: 4.987715
+insert time: 6.417297
 number of failed inserts: 0
 
-lookup time: 0.023455
+lookup time: 0.013491
 number of false negatives: 0
 false positive rate: 0.000000
 
-remove time: 3.975905
+remove time: 4.128972
 number of failed removes: 0
 
 seed: 42
+memory consumption: 19537936
