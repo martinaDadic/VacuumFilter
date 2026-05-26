@@ -12,7 +12,7 @@
 
 using namespace std;
 
-const int RANDOM_SEED = 42;
+const int RANDOM_SEED = 42;  // fixed seed for reproducible tests
 const vector<int> DEFAULT_ARTIFICIAL_LENGTHS = {
     1000, 2000, 5000, 10000, 50000, 100000, 500000, 1000000, 5000000, 10000000};
 const vector<int> DEFAULT_K_VALUES = {10, 20, 50, 100, 200};
@@ -22,13 +22,15 @@ const int FASTA_LINE_LENGTH = 60;
 const string OUTPUT_DIRECTORY = "data";
 const string SUMMARY_FILENAME = OUTPUT_DIRECTORY + "/data_summary.csv";
 
-mt19937 rng(RANDOM_SEED);
+mt19937 rng(RANDOM_SEED);  // random number generator with a fixed seed
 
-bool is_valid_dna_base(char base) {
+bool is_valid_dna_base(char base) {  // checks if a character is a valid
+                                     // DNA base
   return base == 'A' || base == 'C' || base == 'G' || base == 'T';
 }
 
-bool is_valid_kmer(const string& kmer) {
+bool is_valid_kmer(const string& kmer) {  // checks if all characters in a k-mer
+                                          // are valid DNA bases
   for (char base : kmer) {
     if (!is_valid_dna_base(base)) {
       return false;
@@ -38,13 +40,14 @@ bool is_valid_kmer(const string& kmer) {
   return true;
 }
 
-string generate_sequence(int length) {
+string generate_sequence(int length) {  // generates a random DNA sequence of
+                                        // the requested length
   string dna_bases = "AGCT";
   string sequence;
   sequence.reserve(length);
 
-  uniform_int_distribution<int> dist(0, 3);
-
+  uniform_int_distribution<int> dist(0, 3);  // randomly selects one of four
+                                             // DNA bases
   for (int i = 0; i < length; i++) {
     sequence += dna_bases[dist(rng)];
   }
@@ -53,7 +56,7 @@ string generate_sequence(int length) {
 }
 
 void save_fasta(const string& filename, const string& sequence_name,
-                const string& sequence) {
+    const string& sequence) {  // writes one DNA sequence to a FASTA file
   ofstream file(filename);
 
   file << ">" << sequence_name << "\n";
@@ -63,7 +66,8 @@ void save_fasta(const string& filename, const string& sequence_name,
   }
 }
 
-string read_fasta(const string& filename) {
+string read_fasta(const string& filename) {  // reads a FASTA file and returns
+                                             // the sequence without headers
   string sequence;
 
   ifstream file(filename);
@@ -81,7 +85,7 @@ string read_fasta(const string& filename) {
     }
 
     for (char character : line) {
-      if (!isspace(character)) {
+      if (!isspace(character)) {  // ignore whitespace inside FASTA lines
         sequence += toupper(character);
       }
     }
@@ -90,15 +94,17 @@ string read_fasta(const string& filename) {
   return sequence;
 }
 
-vector<string> extract_kmers(const string& sequence, int k) {
+vector<string> extract_kmers(
+    const string& sequence,
+    int k) {  // extracts all valid k-mers from a DNA sequence
   vector<string> kmers;
 
   if ((int)sequence.size() < k) {
     return kmers;
   }
 
-  kmers.reserve(sequence.size() - k + 1);
-
+  kmers.reserve(sequence.size() - k + 1);  // preallocates space for the maximum
+                                           // possible number of k-mers
   for (int i = 0; i <= (int)sequence.size() - k; i++) {
     string kmer = sequence.substr(i, k);
 
@@ -110,7 +116,9 @@ vector<string> extract_kmers(const string& sequence, int k) {
   return kmers;
 }
 
-vector<string> get_unique_kmers(const vector<string>& kmers) {
+vector<string> get_unique_kmers(
+    const vector<string>& kmers) {  // removes duplicate k-mers
+                                    // while preserving order
   set<string> seen_kmers;
   vector<string> unique_kmers;
 
@@ -124,21 +132,13 @@ vector<string> get_unique_kmers(const vector<string>& kmers) {
   return unique_kmers;
 }
 
-string generate_random_kmer(int k) {
-  string dna_bases = "AGCT";
-  string kmer;
-  kmer.reserve(k);
-
-  uniform_int_distribution<int> dist(0, 3);
-
-  for (int i = 0; i < k; i++) {
-    kmer += dna_bases[dist(rng)];
-  }
-
-  return kmer;
+string generate_random_kmer(int k) {  // generates one random k-mer of length k
+  return generate_sequence(k);
 }
 
-vector<int> parse_int_list(const string& text) {
+vector<int> parse_int_list(
+    const string& text) {  // parses comma-separated integer values from
+                           // the command line
   vector<int> values;
   stringstream ss(text);
   string item;
@@ -152,7 +152,8 @@ vector<int> parse_int_list(const string& text) {
   return values;
 }
 
-bool create_output_directory() {
+bool create_output_directory() {  // creates the output directory
+                                  // if it does not exist
   if (filesystem::exists(OUTPUT_DIRECTORY)) {
     return true;
   }
@@ -160,44 +161,56 @@ bool create_output_directory() {
   return filesystem::create_directory(OUTPUT_DIRECTORY);
 }
 
-string make_artificial_fasta_filename(int length) {
+string make_artificial_fasta_filename(
+    int length) {  // builds the FASTA filename for an artificial dataset
   return OUTPUT_DIRECTORY + "/artificial_len" + to_string(length) + ".fasta";
 }
 
-string make_insert_filename(const string& dataset_name, int k) {
+string make_insert_filename(const string& dataset_name,
+    int k) {  // builds the filename for k-mers inserted into filters
   return OUTPUT_DIRECTORY + "/" + dataset_name + "_k" + to_string(k) +
          "_insert.txt";
 }
 
-string make_queries_filename(const string& dataset_name, int k) {
+string make_queries_filename(const string& dataset_name,
+    int k) {  // builds the filename for positive and negative query k-mers
   return OUTPUT_DIRECTORY + "/" + dataset_name + "_k" + to_string(k) +
          "_queries.csv";
 }
 
+// Generates positive queries from existing k-mers and negative queries
+// from random k-mers that do not appear in the dataset.
 pair<vector<string>, vector<string>> generate_queries(
     const vector<string>& unique_kmers, int k,
     int query_count = DEFAULT_QUERY_COUNT) {
-  set<string> kmer_set(unique_kmers.begin(), unique_kmers.end());
-
+  set<string> kmer_set(unique_kmers.begin(),
+                       unique_kmers.end());  // used to quickly check if a
+                                             // random k-mer already exists
   vector<string> shuffled_kmers = unique_kmers;
+  // Randomizes which existing k-mers become positive queries.
   shuffle(shuffled_kmers.begin(), shuffled_kmers.end(), rng);
 
-  vector<string> positive_queries(
+  vector<string> positive_queries(  // positive queries are k-mers that should
+                                    // be found
       shuffled_kmers.begin(),
       shuffled_kmers.begin() + min(query_count, (int)shuffled_kmers.size()));
 
-  vector<string> negative_queries;
+  vector<string> negative_queries;  // negative queries are k-mers that should
+                                    // not be found
   set<string> negative_query_set;
 
   int attempts = 0;
-  int max_attempts = query_count * MAX_NEGATIVE_ATTEMPTS_PER_QUERY;
-
+  int max_attempts =
+      query_count *
+      MAX_NEGATIVE_ATTEMPTS_PER_QUERY;  // prevents an infinite loop when
+                                        // generating negatives
   while ((int)negative_queries.size() < query_count &&
          attempts < max_attempts) {
     attempts++;
 
     string candidate = generate_random_kmer(k);
 
+    // keep only candidates that are not real k-mers and not duplicates.
     if (kmer_set.find(candidate) == kmer_set.end() &&
         negative_query_set.find(candidate) == negative_query_set.end()) {
       negative_query_set.insert(candidate);
@@ -208,13 +221,14 @@ pair<vector<string>, vector<string>> generate_queries(
   if ((int)negative_queries.size() < query_count) {
     cerr << "Warning: Generated only " << negative_queries.size()
          << " negative queries for k = " << k << "\n";
-  }
+  }  // warns when fewer negative queries were generated than requested
 
   return {positive_queries, negative_queries};
 }
 
 void write_insert_file(const string& filename,
-                       const vector<string>& unique_kmers) {
+    const vector<string>& unique_kmers) {  // writes unique k-mers used for
+                                           // filter insertion
   ofstream file(filename);
 
   if (!file.is_open()) {
@@ -228,8 +242,9 @@ void write_insert_file(const string& filename,
 }
 
 void write_queries_file(const string& filename,
-                        const vector<string>& positive_queries,
-                        const vector<string>& negative_queries) {
+    const vector<string>& positive_queries,
+    const vector<string>& negative_queries) {  // writes query k-mers
+                                               // with expected lookup results
   ofstream file(filename);
 
   if (!file.is_open()) {
@@ -248,12 +263,14 @@ void write_queries_file(const string& filename,
   }
 }
 
+// Reads the input FASTA file, generates artificial datasets,
+// extracts k-mers, creates query files, and writes a summary CSV.
 int main(int argc, char* argv[]) {
   string ecoli_fasta_filename = "sequence.fasta";
   int query_count = DEFAULT_QUERY_COUNT;
   vector<int> artificial_lengths = DEFAULT_ARTIFICIAL_LENGTHS;
   vector<int> k_values = DEFAULT_K_VALUES;
-
+  // Command-line arguments can override the default test settings.
   if (argc >= 2) {
     ecoli_fasta_filename = argv[1];
   }
@@ -282,10 +299,11 @@ int main(int argc, char* argv[]) {
     return 1;
   }
 
-  vector<pair<string, string>> datasets;
+  vector<pair<string, string>> datasets;  // stores dataset names together with
+                                          // their DNA sequences
   datasets.push_back({"ecoli", ecoli_sequence});
 
-  for (int length : artificial_lengths) {
+  for (int length : artificial_lengths) {  // generates all artificial datasets
     string artificial_sequence = generate_sequence(length);
     string artificial_fasta_filename = make_artificial_fasta_filename(length);
 
@@ -303,15 +321,17 @@ int main(int argc, char* argv[]) {
     return 1;
   }
 
-  summary_file
+  summary_file  // writes the CSV header for the summary file
       << "dataset;sequence_length;k;total_kmers;unique_kmers;"
       << "positive_queries;negative_queries;insert_file;queries_file;seed\n";
 
-  for (const auto& dataset : datasets) {
+  for (const auto& dataset : datasets) {  // processes E. coli and every
+                                          // artificial dataset
     string dataset_name = dataset.first;
     string sequence = dataset.second;
 
-    for (int k : k_values) {
+    for (int k : k_values) {  // repeats file generation for every selected
+                              // k-mer length
       vector<string> kmers = extract_kmers(sequence, k);
       vector<string> unique_kmers = get_unique_kmers(kmers);
 
@@ -330,7 +350,7 @@ int main(int argc, char* argv[]) {
                    << kmers.size() << ";" << unique_kmers.size() << ";"
                    << positive_queries.size() << ";" << negative_queries.size()
                    << ";" << insert_filename << ";" << queries_filename << ";"
-                   << RANDOM_SEED << "\n";
+                   << RANDOM_SEED << "\n";  // adds one row to the summary file
     }
   }
 
